@@ -167,3 +167,47 @@
     
     text-align: center;
 }
+
+
+
+/*
+    EVENTO.HTML
+*/
+
+.ventana-informacion{
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 100%;
+    text-align: center;
+    color: black;
+}
+
+.ventana-informacion ul{
+    text-align: left;
+    padding-left: 50%;
+    list-style-type: none;
+}
+
+.ventana-informacion img{
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 50%;
+    max-height: 50%;
+    display: flow-root;
+}
+
+#img1{
+    width: 20%;
+    height: 20%;
+    max-width: 40%;
+    max-height: 40%;
+}
+
+#img2{
+    width: 20%;
+    height: 20%;
+    max-width: 40%;
+    max-height: 40%;
+}
+
