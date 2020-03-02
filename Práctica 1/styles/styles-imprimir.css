@@ -25,6 +25,29 @@
 
 }
 
+/*
+    FOOTER
+*/
+
+.footer{
+    display: block;
+    align-self: center;
+    /*padding-left: 50%;
+    */
+    height: 50%;
+    margin-top: 2%;
+}
+
+.footer p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 100%;
+    text-align: center;
+    color: black;
+    
+    text-align: center;
+}
+
+
 
 .ventana-informacion{
     display: inline-block;
@@ -42,16 +65,7 @@
     list-style-type: none;
 }
 
-.ventana-informacion img{
-    padding-top: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    max-width: 50%;
-    max-height: 50%;
-    display: table-column;
-    align-self: right;
-    float: right;
-}
+
 
 .texto-informacion{
     display: block;
@@ -59,6 +73,13 @@
 
 .imagenes{
     display: block;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 50%;
+    max-height: 50%;
+    align-self: right;
+    float: right;
 }
 
 
