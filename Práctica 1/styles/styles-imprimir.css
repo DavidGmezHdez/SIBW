@@ -25,30 +25,10 @@
 
 }
 
+
 /*
-    FOOTER
+    VENTANA DE INFORMACION
 */
-
-.footer{
-    display: block;
-    align-self: center;
-    /*padding-left: 50%;
-    */
-    height: 50%;
-    margin-top: 2%;
-}
-
-.footer p{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 100%;
-    text-align: center;
-    color: black;
-    
-    text-align: center;
-}
-
-
-
 .ventana-informacion{
     display: inline-block;
     color: black;
@@ -113,3 +93,27 @@
         font-size: 90%;
     }   
 }
+
+
+/*
+    FOOTER
+*/
+
+.footer{
+    display: block;
+    align-self: center;
+    /*padding-left: 50%;
+    */
+    height: 50%;
+    margin-top: 2%;
+}
+
+.footer p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 100%;
+    text-align: center;
+    color: black;
+    
+    text-align: center;
+}
+
