@@ -35,7 +35,7 @@
 
 .texto-cabecera h1{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 275%;
+    font-size: 300%;
     text-align: center;
     color: white;
 }
@@ -137,13 +137,11 @@
 }
 
 .evento img{
-    width: 40%;
-    height: 40%;
-    max-width: 60%;
-    max-height: 60%;
+    width: 60%;
+    height: 60%;
     margin-right: auto;
     margin-left: auto;
-    padding-left: 30%;
+    padding-left: 20%;
     
 
 }
@@ -233,7 +231,7 @@
 
 @media (max-width: 1476px) {
 
-.auxiliar .evento .ventana-informacion p{
+.auxiliar .evento .ventana-informacion{
     font-size: 150%;
 }   
 
