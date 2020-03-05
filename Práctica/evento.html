@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width = device-width, initial-scale=1.0">
-        <title>Práctica 1</title>
+        <title>Evento</title>
         <link rel="stylesheet" href="styles/styles.css">
+        <script type="text/javascript" src="scripts/scripts.js"></script>
     </head>
     <body>
         <!--Código de la cabecera-->
@@ -65,6 +66,25 @@
                         <li>Oreo -> De 4.99€ a Demanda del McDonalds</li>
                     </ul>
             </div>
+
+            <button id="button" onclick="Comenta()"><span>Comenta</span></button>
+
+
+            <div id="ventana-comentarios">
+                <form id = "formulario">
+                    <label>Nombre:</label>
+                    <input type="text">
+                    <label>Email</label>
+                    <input type="email">
+                    <label>Comnetario</label>
+                    <textarea form="formulario" aria-setsize="6,80"></textarea>
+    
+                </form>
+
+            </div>
+            <script>
+                document.getElementById("ventana-comentarios").style.display = "none";
+            </script>
 
         </section>
 
