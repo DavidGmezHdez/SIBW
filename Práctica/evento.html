@@ -40,10 +40,11 @@
                 <p>Imprimir</p>
                 <img src="img/imprimir.png">
             </a>
+            <button id="button" onclick="Comenta()"><span>Comenta</span></button>
         </aside>
         
         <!--Código de la seccion de informacion del evento-->
-        <section class="ventana-informacion">
+        <section class="ventana-informacion" style="margin-bottom: 25%;">
             <div class="imagenes">
                 <img  src ="img/pueblo.png"/>
                 <img  src="img/tienda-helado.png"/>
@@ -67,24 +68,40 @@
                     </ul>
             </div>
 
-            <button id="button" onclick="Comenta()"><span>Comenta</span></button>
+            <div id="caja-comentarios">
+                <div id = "caja">
+                    <div id="comentario1" class="comentario">
+                        <p><em>Julio Jimenez</em></p>
+                        <p>18:00, 03 de Julio de 2018</p>
+                        <p>¡Estaré allí!</p>
+                    </div>
+                    <div id="comentario2" class="comentario">
+                        <p><em>Sara Huertas</em></p>
+                        <p>20:00, 03 de Julio de 2018</p>
+                        <p>Espero que le firmes un autógrafo a mi hija</p>
+                    </div>
+                </div>
+            </div>
 
 
-            <div id="ventana-comentarios">
+            <div id="formulario-comentarios">
                 <form id = "formulario">
                     <label>Nombre:</label>
-                    <input type="text">
+                    <input type="text" name="name" size="40">
                     <label>Email</label>
-                    <input type="email">
+                    <input type="email" name="email" size="40">
                     <label>Comnetario</label>
-                    <textarea form="formulario" aria-setsize="6,80"></textarea>
-    
+                    <textarea id="coment" name="coment" oninput="checkPalabras()"></textarea>
+                        <button type="button" onclick="Enviar()">Enviar</button>
+                    
                 </form>
 
             </div>
+
             <script>
-                document.getElementById("ventana-comentarios").style.display = "none";
+                document.getElementById("formulario-comentarios").style.display = "none";
             </script>
+
 
         </section>
 

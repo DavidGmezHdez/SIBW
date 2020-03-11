@@ -249,6 +249,7 @@
     vertical-align:middle;
     margin-right: 100%;
     margin-top: 10%;
+    
 }
 
 #button span {
@@ -278,11 +279,21 @@
 
 
 
-.ventana-comentarios{
-    margin-top: 5%;
+#formulario-comentarios{
     margin-right: 100%;
+    display:inline-block;
 }
 
+
+#caja-comentarios{
+    display: inline-block;
+}
+
+.comentario{
+    border-radius: 5%;
+    border-color: red;
+    border-style: dotted;
+}
 
 
 @media (max-width: 1476px) {
