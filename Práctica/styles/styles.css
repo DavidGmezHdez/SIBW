@@ -240,15 +240,16 @@
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 200px;
+    font-size: 100%;
+    padding: 5%;
+    width: 40%;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 5px;
+    margin: 2%;
     vertical-align:middle;
     margin-right: 100%;
     margin-top: 10%;
+    margin-left: 30%;
     
 }
 
@@ -293,6 +294,8 @@
     border-radius: 5%;
     border-color: red;
     border-style: dotted;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 

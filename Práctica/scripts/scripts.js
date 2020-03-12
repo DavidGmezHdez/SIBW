@@ -1,8 +1,6 @@
 
 function Comenta() {
     document.getElementById("formulario-comentarios").style.display = "block";
-
-
 }
 
 
@@ -10,41 +8,51 @@ function Enviar(){
     var req = requisitos();
     var em = ValidarEmail(document.forms["formulario"]["email"].value);
 
+    //Comprovamos que los campos esten rellenos y el email sea correcto
     if(req == false || em == false){
         return false;
     }
 
+    //Creamos las variables para añadirlas al HTML siguiendo el mismo patron que los comentarios anteriores
     var name = document.forms["formulario"]["name"].value;
     var coment = document.forms["formulario"]["coment"].value;
 
     var date =  new Date();
 
-    var year = new Intl.DateTimeFormat('es',{year: 'numeric'}).format(fecha);
-    var month = new Intl.DateTimeFormat('es',{year: 'long'}).format(fecha);
-    var monthCorrecto = month[0].toUpperCase + month.slice(1);
-    var day = new Intl.DateTimeFormat('es',{day: '2-digit'}).format(fecha);
-    var time = new Intl.DateTimeFormat('es',{hour: 'numeric',minute:'numeric'}).format(fecha);
-    document.getElementById("caja").innerHTML += '<div class = "comentario"><p><em>' + name +'</em></p><p>' + time + ',' + day + ' de ' + monthCorrecto + ' de ' + year + '</p> <p> ' + coment + '</p></div>'
+    var year = new Intl.DateTimeFormat('es',{year: 'numeric'}).format(date);
+    var month = new Intl.DateTimeFormat('es',{month: 'long'}).format(date);
+    var monthCorrecto = month[0].toUpperCase() + month.slice(1);
+    var day = new Intl.DateTimeFormat('es',{day: '2-digit'}).format(date);
+    var time = new Intl.DateTimeFormat('es',{hour: 'numeric',minute:'numeric'}).format(date);
+    
+    //Agregamos el nuevo comentario
+    document.getElementById("caja").innerHTML += '<div class = "comentario"><p><em>' + name +'</em></p><p>' + time + ', ' + day + ' de ' + monthCorrecto + ' de ' + year + '</p> <p> ' + coment + '</p></div>'
+    
+    //Borramos todos los datos de los inputs y volvemos a poner la caja en invisible
+    document.forms["formulario"]["name"].value = "";
+    document.forms["formulario"]["email"].value = "";
+    document.forms["formulario"]["coment"].value = "";
+    document.getElementById("formulario-comentarios").style.display = "none";
 
 }
 
 
 function requisitos(){
-    var name = document.forms["formulario"]["name"].value;
-    var email = document.forms["formulario"]["email"].value;
-    var coment = document.forms["formulario"]["coment"].value;
 
-    if(name == null || name == ""){
+    //Comprobamos que el nombre no está vacio
+    if(document.forms["formulario"]["name"].value == null || document.forms["formulario"]["name"].value == ""){
         alert("El nombre es un campo obligatorio");
         return false;
     }
 
-    if(email == null || email == ""){
+    //Comprobamos que el email no está vacío
+    if(document.forms["formulario"]["email"].value == null || document.forms["formulario"]["email"].value == ""){
         alert("El email es un campo obligatorio");
         return false;
     }
 
-    if(coment == null || coment == ""){
+    //Comprobamos que el comentario no está vacío
+    if(document.forms["formulario"]["coment"].value == null || document.forms["formulario"]["coment"].value == ""){
         alert("El comentario es un campo obligatorio");
         return false;
     }
@@ -52,7 +60,9 @@ function requisitos(){
 
 
 function ValidarEmail(email){
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)){
+
+    //Validamos el email
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
         return true;
     }
     alert("La dirección de email no es correcta(Ejemplo: guillermo@mail.com)");
@@ -63,21 +73,11 @@ function ValidarEmail(email){
 
 
 function checkPalabras(){
-    var comentario = document.forms["formulario"]["coment"].value;
-    const PALABRAS=['hijo de puta','subnormal','carahuevo','negro'];
-    var censurado = censurar(comentario.value,PALABRAS);
-    document.forms["formulario"]["coment"].value = censurado;
-}
-
-function censurar(string, filters){
-    var regex = new RegExp(filters.join("|"),"gi");
-    return string.replace(regex, function (match) {
-        // Reemplazamos cada letra con una estrella
-        var estrella = '';
-        for (var i = 0; i < match.length; i++) {
-            estrella += '*';
-        }
-        return estrella;
-    });
-
+    //Comprobamos que las palabras malsonantes sean sustituidas por asteriscos
+    const texto = document.getElementById("coment");
+    let palabras=/subnormal|carahuevo|negro/gi;
+    let comentario = texto.value;
+    let comentarioLimpio = comentario.replace(palabras,'******');
+    document.getElementById("coment").value = comentarioLimpio;
+    
 }
