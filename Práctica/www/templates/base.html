@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang ='es'>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width, initial-scale=1.0">
+        {% block titulo %}
+        <title>Práctica 1</title>
+        {% endblock %}
+        <link rel="stylesheet" href="styles/styles.css">
+        <script type="text/scripts" src="scripts/scripts.js"></script>
+    </head>
+    <body>
+        <!--Código de la cabecera-->
+        <header class="cabecera">
+            <div class = "logotipo">
+                <img src="img/logo.png">
+            </div>
+
+            <div class ="texto-cabecera">
+                <h1>Helados Cecilio</h1>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li class = "natvar"><h5>Inicio</h5></li>
+                    <li class = "natvar"><h5>Informacion</h5></li>
+                    <li class = "natvar"><h5>Regalos</h5></li>
+                </ul>
+            </div>
+            
+        </header>
+
+        <!--Código de la ventana auxiliar-->
+        {% block aside %}
+        <p>Aqui va el auxiliar</p>
+        {% endblock %}
+        
+        <!--Código de la seccion de eventos-->
+
+        {% block principal %}
+            <p>Parte principal de plantilla</p>
+        {% endblock %}
+        <!--Código del pie de página-->
+        <footer class="footer">
+            <p>Creado por: David Gómez Hernández</p>
+            <p>Contacto: <a href="cecilio@heladoscecilio.com">
+            cecilio@heladoscecilio.com</a></p>
+            <p>Prácticas SIBW</p>
+        </footer>
+    </body>
+</html>

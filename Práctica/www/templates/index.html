@@ -1,46 +1,25 @@
-<!DOCTYPE html>
-<html lang ='es'>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width = device-width, initial-scale=1.0">
-        <title>Práctica 1</title>
-        <link rel="stylesheet" href="styles/styles.css">
-        <script type="text/scripts" src="scripts/scripts.js"></script>
-    </head>
-    <body>
-        <!--Código de la cabecera-->
-        <header class="cabecera">
-            <div class = "logotipo">
-                <img src="img/logo.png">
-            </div>
+{% extends "base.html" %}
 
-            <div class ="texto-cabecera">
-                <h1>Helados Cecilio</h1>
-            </div>
+{% block titulo %}
+    <title>Principal</title>
+{% endblock %}
 
-            <div class="menu">
-                <ul>
-                    <li class = "natvar"><h5>Inicio</h5></li>
-                    <li class = "natvar"><h5>Informacion</h5></li>
-                    <li class = "natvar"><h5>Regalos</h5></li>
-                </ul>
-            </div>
-            
-        </header>
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
 
-        <!--Código de la ventana auxiliar-->
-        <aside class="auxiliar">
-            <p>Instagram</p>
-            <img src="img/instagram.png"/>
-            <p>Facebook</p>
-            <img src="img/facebook.png"/>
-            <p>Twitter</p>
-            <img src="img/twitter.png"/>
-        </aside>
-        
+
+{% block principal %}
         <!--Código de la seccion de eventos-->
         <section class="ventana-eventos">
-            <a href="evento.html">
+            <a href="evento.php?ev=1">
                 <div class="evento">
                     
                     <img src="img/tienda-helado.png"/>
@@ -48,7 +27,7 @@
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=2">
                 <div class="evento">
                     
                     <img src="img/firma-autografos.png"/>
@@ -56,7 +35,7 @@
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=3">
                 <div class="evento">
                     
                     <img src="img/magia-helados.png"/>
@@ -64,7 +43,7 @@
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=4">
                 <div class="evento">
                     
                     <img src="img/visita-playa.png"/>
@@ -72,7 +51,7 @@
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=5">
                 <div class="evento">
                     
                     <img src="img/representación-cuadros.png"/>
@@ -80,41 +59,32 @@
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=6">
                 <div class="evento">
                     <img src="img/anuncio.png"/>
                     <p>Rodaje del anuncio</p>
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=7">
                 <div class="evento">
                     <img src="img/rodaje-pelicula.png"/>
                     <p>Rodaje pelicula</p>
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=8">
                 <div class="evento">
                     <img src="img/denuncia.png"/>
                     <p>Crisis: Denuncia de una madre que afirma que tiene mucho azúcar</p>
                 </div>
             </a>
 
-            <a href="evento.html">
+            <a href="evento.php?ev=9">
                 <div class="evento">
                     <img src="img/cosas.png"/>
                     <p>50 cosas sobre Cecilio. De ex-militar a cocinero profesional</p>
                 </div>
             </a>
         </section>
-
-        <!--Código del pie de página-->
-        <footer class="footer">
-            <p>Creado por: David Gómez Hernández</p>
-            <p>Contacto: <a href="cecilio@heladoscecilio.com">
-            cecilio@heladoscecilio.com</a></p>
-            <p>Prácticas SIBW</p>
-        </footer>
-    </body>
-</html>
+    {% endblock %}

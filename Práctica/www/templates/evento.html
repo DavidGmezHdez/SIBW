@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Evento</title>
+    {% endblock %}
+
+    {% block aside %}
+        <!--Código de la ventana auxiliar-->
+        <aside class="auxiliar">
+            <p>Instagram</p>
+            <img src="img/instagram.png">
+            <p>Facebook</p>
+            <img src="img/facebook.png">
+            <p>Twitter</p>
+            <img src="img/twitter.png">
+            <a href="evento-imprimir.html">
+                <p>Imprimir</p>
+                <img src="img/imprimir.png">
+            </a>
+            <button id="button" onclick="Comenta()"><span>Comenta</span></button>
+        </aside>
+    {% endblock %}
+
+
+{% block principal %}
+        <section class="ventana-informacion" style="margin-bottom: 25%;">
+            <div class="imagenes">
+                <img  src = "{{ evento['imagen1'] }}"/>
+                <img  src= "{{ evento['imagen2'] }}"/>
+            </div>
+            <div class="texto-informacion">            
+                <h3>{{ evento['titulo'] }}</h3>
+                <h4>Por {{ evento['autor'] }}</h4>
+                <h5>{{ evento['fecha'] }}</h5>
+                <p>{{ evento['descripcion'] }} </p>
+            </div>
+
+            <div id="caja-comentarios">
+                <div id = "caja">
+                    {% for comentario in evento['comentarios'] %}
+                        <div class="comentario">
+                            <p><em>{{comentario[0]}}</em></p>
+                            <p>{{comentario[1]}}</p>
+                            <p>{{comentario[2]}}</p>
+                        </div>
+                    {% endfor %} 
+                </div>
+            </div>
+
+
+            <div id="formulario-comentarios">
+                <form id = "formulario">
+                    <label>Nombre:</label>
+                    <input type="text" name="name" size="40">
+                    <label>Email</label>
+                    <input type="email" name="email" size="40">
+                    <label>Comnetario</label>
+                    <textarea id="coment" name="coment" oninput="checkPalabras()" rows="10" cols="60"></textarea>
+                        <button type="button" onclick="Enviar()">Enviar</button>
+                    
+                </form>
+
+            </div>
+
+            <script>
+                document.getElementById("formulario-comentarios").style.display = "none";
+            </script>
+
+
+        </section>
+    {% endblock %}
