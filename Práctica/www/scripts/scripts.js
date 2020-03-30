@@ -1,6 +1,10 @@
 
 function Comenta() {
-    document.getElementById("formulario-comentarios").style.display = "block";
+
+    if(document.getElementById("formulario-comentarios").style.display == "none")
+        document.getElementById("formulario-comentarios").style.display = "block";
+    else
+        sdocument.getElementById("formulario-comentarios").style.display = "none";
 }
 
 
@@ -74,10 +78,69 @@ function ValidarEmail(email){
 
 function checkPalabras(){
     //Comprobamos que las palabras malsonantes sean sustituidas por asteriscos
-    const texto = document.getElementById("coment");
-    let palabras=/subnormal|carahuevo|negro/gi;
-    let comentario = texto.value;
-    let comentarioLimpio = comentario.replace(palabras,'******');
-    document.getElementById("coment").value = comentarioLimpio;
+    const censura = '*'
+    var palabras= document.getElementById("censuradas").value.match(/[a-z'\-]+/gi)
+    console.log(palabras)
     
+    var fraseAux = document.forms["formulario"]["coment"].value
+    var frase = document.forms["formulario"]["coment"].value.match(/[a-z'\-]+/gi)
+    var resultado = fraseAux
+    var palabra = []
+
+    for(i=0;i<frase.length;i++){
+        palabra.push(String(frase[i]))
+    }
+
+    for(j=0;j<palabras.length;j++){
+        var indice = palabra.indexOf(String(palabra[j]))
+
+        if(indice!=-1){
+            resultado = fraseAux.replace(palabra[indice], censura.repeat(palabra[indice].length))
+        }
+    }
+
+    document.forms["formulario"]["coment"].value = resultado
+}
+
+
+
+// Funcion para abrir el modal
+function abrirModal() {
+    document.getElementById("mymodal").style.display = "block";
+  }
+  
+// Cerramos el modal
+function cerrarModal() {
+    document.getElementById("mymodal").style.display = "none";
+}
+ 
+var slideIndex = 1;
+showSlides(slideIndex);
+  
+// Controles
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+  
+// Controles de la imagen
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+  
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    var captionText = document.getElementById("caption");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    captionText.innerHTML = dots[slideIndex-1].alt;
 }

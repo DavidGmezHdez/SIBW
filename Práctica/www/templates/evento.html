@@ -2,7 +2,7 @@
     {% block titulo %}
     <title>Evento</title>
     {% endblock %}
-
+    
     {% block aside %}
         <!--Código de la ventana auxiliar-->
         <aside class="auxiliar">
@@ -48,14 +48,15 @@
 
 
             <div id="formulario-comentarios">
-                <form id = "formulario">
+                <form id = "formulario" name="formulario" method="POST" action="comentario.php">
+                    <input name="idevento" type="hidden" value="{{ evento['idEvento'] }}"></input>
                     <label>Nombre:</label>
                     <input type="text" name="name" size="40">
                     <label>Email</label>
                     <input type="email" name="email" size="40">
                     <label>Comnetario</label>
                     <textarea id="coment" name="coment" oninput="checkPalabras()" rows="10" cols="60"></textarea>
-                        <button type="button" onclick="Enviar()">Enviar</button>
+                    <input type="submit" value = "Enviar Comentario" onclick="requisitos()">
                     
                 </form>
 
@@ -64,6 +65,73 @@
             <script>
                 document.getElementById("formulario-comentarios").style.display = "none";
             </script>
+
+
+            <div class = "row">
+                <div class ="column">
+                    <img src = "{{galeria[0][1]}}" onclick="abrirModal();currentSlide(1)" class="hover-shadow">
+                </div>
+                <div class ="column">
+                    <img src = "{{galeria[1][1]}}" onclick="abrirModal();currentSlide(2)" class="hover-shadow">
+                </div>
+                <div class ="column">
+                    <img src = "{{galeria[2][1]}}" onclick="abrirModal();currentSlide(3)" class="hover-shadow">
+                </div>
+            </div>
+
+
+            <div id="mymodal" class ="modal">
+                <span class="close cursor" onclick="cerrarModal()">&times;</span>
+                <div class="modal-content">
+              
+                  <div class="mySlides">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="{{galeria[0][1]}}" style="width:100%">
+                  </div>
+              
+                  <div class="mySlides">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="{{galeria[1][1]}}" style="width:100%">
+                  </div>
+              
+                  <div class="mySlides">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="{{galeria[2][1]}}" style="width:100%">
+                  </div>
+              
+              
+                  <!-- Next/previous controls -->
+                  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              
+                  <!-- Caption text -->
+                  <div class="caption-container">
+                    <p id="caption"></p>
+                  </div>
+              
+                  <!-- Thumbnail image controls -->
+                  <div class="column">
+                    <img class="demo" src="{{galeria[0][1]}}" onclick="currentSlide(1)" alt="{{galeria[0][0]}}">
+                  </div>
+              
+                  <div class="column">
+                    <img class="demo" src="{{galeria[1][1]}}" onclick="currentSlide(2)" alt="{{galeria[1][0]}}">
+                  </div>
+              
+                  <div class="column">
+                    <img class="demo" src="{{galeria[2][1]}}" onclick="currentSlide(3)" alt="{{galeria[2][0]}}">
+                  </div>
+              
+                </div>
+            </div>
+
+            <input style="visibility: hidden;" id="censuradas" value = "
+            {% for palabra in censuradas %}
+            {{palabra[0]}}
+            {% endfor %}
+            "/>
+
+
 
 
         </section>

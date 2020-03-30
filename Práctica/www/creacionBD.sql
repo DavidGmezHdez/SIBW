@@ -120,3 +120,15 @@ INSERT INTO palabrascensuradas (palabra) VALUES('Puta');
 INSERT INTO palabrascensuradas (palabra) VALUES('puta');
 INSERT INTO palabrascensuradas (palabra) VALUES('Mierda');
 INSERT INTO palabrascensuradas (palabra) VALUES('mierda');
+
+
+CREATE TABLE galeria(
+    idImagen INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(30),
+    imagen VARCHAR(100)
+);
+
+INSERT INTO galeria (titulo,imagen) VALUES ('Calipo Fresa','img/calipocola.png');
+INSERT INTO galeria (titulo,imagen) VALUES ('Calipo Lima','img/calipolimon.png');
+INSERT INTO galeria (titulo,imagen) VALUES ('Calipo Naranja','img/caliponaranja.png');
+INSERT INTO galeria (titulo,imagen) VALUES ('Frigopie','img/frigopie.png');

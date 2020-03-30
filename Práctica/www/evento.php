@@ -19,7 +19,9 @@
 
 
     $evento = loadEvento($idEvento);
+    $censuradas = loadCensuradas();
+    $galeria = loadGaleria();
 
-    echo $twig->render('evento.html',['evento'=>$evento]);
+    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria]);
 
 ?>
