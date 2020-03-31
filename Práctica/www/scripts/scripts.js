@@ -77,30 +77,33 @@ function ValidarEmail(email){
 
 
 function checkPalabras(){
-    //Comprobamos que las palabras malsonantes sean sustituidas por asteriscos
-    const censura = '*'
-    var palabras= document.getElementById("censuradas").value.match(/[a-z'\-]+/gi)
-    console.log(palabras)
+    const CENSURA = '*'
+    var censuradas = document.getElementById("censuradas").value.match(/[a-z'\-]+/gi)
     
-    var fraseAux = document.forms["formulario"]["coment"].value
     var frase = document.forms["formulario"]["coment"].value.match(/[a-z'\-]+/gi)
-    var resultado = fraseAux
-    var palabra = []
+    var fraseAux = document.forms["formulario"]["coment"].value
+    var frasefinal = fraseAux
+    
+    var arrayAux = []
 
-    for(i=0;i<frase.length;i++){
-        palabra.push(String(frase[i]))
+    for(i = 0; i < frase.length; i++){
+        arrayAux.push(String(frase[i]))
     }
 
-    for(j=0;j<palabras.length;j++){
-        var indice = palabra.indexOf(String(palabra[j]))
+    for(j = 0; j < censuradas.length; j++){
+        var pos = arrayAux.indexOf(String(censuradas[j]))
 
-        if(indice!=-1){
-            resultado = fraseAux.replace(palabra[indice], censura.repeat(palabra[indice].length))
+        if(pos != -1){
+            frasefinal = fraseAux.replace(arrayAux[pos], CENSURA.repeat(arrayAux[pos].length))
         }
     }
 
-    document.forms["formulario"]["coment"].value = resultado
+    document.forms["formulario"]["coment"].value = frasefinal
 }
+
+
+
+
 
 
 

@@ -17,10 +17,11 @@
         $idEvento = -1;
     }
 
+    $con = new SIBWBD();
 
-    $evento = loadEvento($idEvento);
-    $censuradas = loadCensuradas();
-    $galeria = loadGaleria();
+    $evento = $con->loadEvento($idEvento);
+    $censuradas = $con->loadCensuradas();
+    $galeria = $con->loadGaleria();
 
     echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria]);
 

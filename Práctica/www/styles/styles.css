@@ -320,6 +320,10 @@
     GALERIA
 */
 
+#imagenes{
+    padding-top: 5%;
+}
+
 .row > .column {
     padding: 0 8px;
   }
