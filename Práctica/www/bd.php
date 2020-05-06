@@ -96,6 +96,41 @@ class SIBWBD{
         }
     }
 
+
+    function checkLogin($nick,$pass){
+        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE nick='" . $nick . "'");
+
+        if($resultado->num_rows > 0){
+            $row=$resultado->fetch_assoc();
+        }
+
+        if(password_verify($pass,$row['pass'])){
+            return true;
+        }
+
+        return false;
+    }
+
+
+    function register($nick,$pass,$avatar){
+        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE nick='" . $nick . "'");
+
+        if($resultado->num_rows > 0){
+            return false;
+        }
+
+        if(is_string($nick) && is_string($pass) && is_string($avatar)){
+            $pass = password_hash($pass,PASSWORD_DEFAULT);
+            $rol = 0;
+            
+            $registro = $this->$con->query("INSERT INTO usuarios (nick,pass,avatar,rol) VALUES ('$nick','$pass','$avatar',$rol)");
+            var_dump($registro);
+            return true;
+        }
+
+        return false;
+    }
+
 }
 
 ?>

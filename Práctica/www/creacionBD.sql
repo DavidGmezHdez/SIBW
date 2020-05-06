@@ -132,3 +132,13 @@ INSERT INTO galeria (titulo,imagen) VALUES ('Calipo Fresa','img/calipocola.png')
 INSERT INTO galeria (titulo,imagen) VALUES ('Calipo Lima','img/calipolimon.png');
 INSERT INTO galeria (titulo,imagen) VALUES ('Calipo Naranja','img/caliponaranja.png');
 INSERT INTO galeria (titulo,imagen) VALUES ('Frigopie','img/frigopie.png');
+
+
+CREATE TABLE usuarios(
+    nick VARCHAR(15) PRIMARY KEY,
+    pass VARCHAR(100),
+    avatar VARCHAR(30),
+    rol INT
+);
+
+INSERT INTO usuarios VALUES ('Direk','$2y$10$FY5V02emjCC1rfvCwPZFuuD4JDrAJ3yg85oPVRN.xCdyk7IvsL05S','img/avatares/boss.png',4);

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Registro</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+
+        <section>
+            <form action="register.php" method="post" class="form" enctype="multipart/form-data">
+
+                <div class="form__field">
+                  <input type="text" name="nick" placeholder="Usuario">
+                </div>
+        
+                <div class="form__field">
+                  <input type="password" name="pass" placeholder="Contraseña">
+                </div>
+
+                <div class="form__field">
+                    <p>Inserte su imagen de avatar</p>
+                    <input type="file" name="imagen">
+                  </div>
+        
+                <div class="form__field">
+                  <input type="submit" value="Registrarse">
+                </div>
+        
+              </form>
+        </section>
+    {% endblock %}

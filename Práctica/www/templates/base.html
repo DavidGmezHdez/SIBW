@@ -25,6 +25,15 @@
                     <li class = "natvar"><h5>Inicio</h5></li>
                     <li class = "natvar"><h5>Informacion</h5></li>
                     <li class = "natvar"><h5>Regalos</h5></li>
+                    {% if logueado == false %}
+                    <li class = "natvar"><a href="register.php"><h5>Registrarse</h5></a></li>
+                    <li class = "natvar"><a href="login.php"><h5>Login</h5></a></li>
+                    {% endif %}
+
+                    {% if logueado == true %}
+                    <li class = "natvar"><a href="profile.php"><h5>Perfil</h5></a></li>
+                    <li class = "natvar"><a href="logout.php"><h5>Cerrar Sesión</h5></a></li>
+                    {% endif %}
                 </ul>
             </div>
             

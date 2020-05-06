@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Login</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+        <section>
+            <form action="login.php" method="post" class="form">
+
+                <div class="form__field">
+                  <input type="text" name="nick" placeholder="Usuario">
+                </div>
+        
+                <div class="form__field">
+                  <input type="password" name="pass" placeholder="Contraseña">
+                </div>
+        
+                <div class="form__field">
+                  <input type="submit" value="Iniciar Sesión">
+                </div>
+        
+              </form>
+        </section>
+    {% endblock %}
