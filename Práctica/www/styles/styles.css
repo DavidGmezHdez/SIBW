@@ -61,8 +61,8 @@
   }
 
 .natvar{
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
     
 }
 
@@ -582,3 +582,35 @@
     top:3px;
     box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d, 0px 5px 3px #999;
   }
+
+
+
+/*
+    PERFIL
+*/
+
+.datos-perfil{
+  align-self: center;
+  padding-left: 50%;
+}
+
+.datos-perfil h4{
+  font-family: 'Courier New', Courier, monospace;
+  padding-left: 8%;
+}
+
+.datos-perfil img{
+  width: 30%;
+  height: 30%;
+}
+
+
+.form{
+  padding-left: 50%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+}
+
+.form p{
+  font-family: 'Courier New', Courier, monospace;
+}

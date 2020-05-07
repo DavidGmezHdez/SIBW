@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Perfil</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+        <section>
+
+            <div class="datos-perfil">
+                <img src="{{ usuario['avatar'] }}" />
+
+                <h4>¡Hola, {{ usuario['nick'] }}!</h4>
+            </div>
+
+
+            <div class="formualrio-perfil">
+                <form action="profile.php" method="post" class="form">
+
+                    <div class="form__field">
+                        <p>Cambiar nombre usuario</p>
+                        <input type="text" name="nuevoNick" placeholder="Usuario">
+                    </div>
+
+                    <div class="form__field">
+                        <p>Cambiar email</p>
+                        <input type="text" name="nuevoEmail" placeholder="Email">
+                    </div>
+
+
+                    <div class="form__field">
+                        <p>Cambiar contraseña</p>
+                        <input type="password" name="nuevaPass" placeholder="Contraseña">
+                    </div>
+
+                    <div class="form__field">
+                        <p>Vuelve a introducir la nueva contraseña</p>
+                        <input type="password" name="nuevaPassConfirmación" placeholder="Confirmación contraseña">
+                    </div>
+            
+                    <div class="form__field">
+                    <input type="submit" value="Enviar datos">
+                    </div>
+            
+                </form>
+            </div>
+        </section>
+    {% endblock %}

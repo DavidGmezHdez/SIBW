@@ -13,6 +13,7 @@
 
         $nick = $_POST['nick'];
         $pass = $_POST['pass'];
+        $email = $_POST['email'];
 
         if(isset($_FILES['imagen'])){
             $errors = array();
@@ -37,8 +38,7 @@
             move_uploaded_file($file_tmp,"img/avatares/" . $file_name);
             $path = strval("img/avatares/" . $file_name);
             
-            if($con->register($nick,$pass,$path)){
-                
+            if($con->register($nick,$pass,$path,$email)){
                 header("refresh:2;url=login.php");
                 echo "Usuario registrado" ;
             }

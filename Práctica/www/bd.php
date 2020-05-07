@@ -97,8 +97,8 @@ class SIBWBD{
     }
 
 
-    function checkLogin($nick,$pass){
-        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE nick='" . $nick . "'");
+    function checkLogin($email,$pass){
+        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE email='" . $email . "'");
 
         if($resultado->num_rows > 0){
             $row=$resultado->fetch_assoc();
@@ -112,24 +112,48 @@ class SIBWBD{
     }
 
 
-    function register($nick,$pass,$avatar){
-        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE nick='" . $nick . "'");
+    function register($nick,$pass,$avatar,$email){
+        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE email='" . $email . "'");
 
         if($resultado->num_rows > 0){
             return false;
         }
 
-        if(is_string($nick) && is_string($pass) && is_string($avatar)){
+        if(is_string($nick) && is_string($pass) && is_string($avatar) && is_string($email)){
             $pass = password_hash($pass,PASSWORD_DEFAULT);
             $rol = 0;
             
-            $registro = $this->$con->query("INSERT INTO usuarios (nick,pass,avatar,rol) VALUES ('$nick','$pass','$avatar',$rol)");
-            var_dump($registro);
+            $registro = $this->$con->query("INSERT INTO usuarios (nick,email,pass,avatar,rol) VALUES ('$nick','$email','$pass','$avatar',$rol)");
             return true;
         }
 
         return false;
     }
+
+    function loadUsuario($email){
+        $resultado = $this->$con->query("SELECT * FROM usuarios WHERE email='" . $email . "'");
+        $usuario = array();
+
+        if($resultado->num_rows > 0){
+            $row = $resultado->fetch_assoc();
+            $usuario = array('idUsuario'=>$row['idUsuario'],'nick'=>$row['nick'],'email'=>$row['email'],'pass'=>$row['pass'],'avatar'=>$row['avatar'],'rol'=>$row['rol']);
+        }
+        return $usuario;
+    }
+
+    function cambiarNick($email, $nuevoNick){
+        $resultado = $this->$con->query("UPDATE usuarios SET nick='$nuevoNick' WHERE email='" . $email . "'");
+    }
+
+    function cambiarEmail($email, $nuevoEmail){
+        $resultado = $this->$con->query("UPDATE usuarios SET email='$nuevoEmail' WHERE email='" . $email . "'");
+    }
+
+    function cambiarPass($email, $pass){
+        $nuevaPass = password_hash($pass,PASSWORD_DEFAULT);
+        $resultado = $this->$con->query("UPDATE usuarios SET pass='$nuevaPass' WHERE email='" . $email . "'");
+    }
+
 
 }
 

@@ -11,6 +11,14 @@
     $fechaEvento ="Fecha por defecto";
     $autorEvento = "Autor por defecto";
 
+    session_start();
+    $logueado = false;
+
+
+    if(isset($_SESSION['logueado'])){
+        $logueado = true;
+    }
+
     if(isset($_GET['ev'])){
         $idEvento = (int) $_GET['ev'];
     }else {
@@ -23,6 +31,6 @@
     $censuradas = $con->loadCensuradas();
     $galeria = $con->loadGaleria();
 
-    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria]);
+    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria, 'logueado'=>$logueado]);
 
 ?>

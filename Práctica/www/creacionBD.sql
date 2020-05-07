@@ -135,10 +135,13 @@ INSERT INTO galeria (titulo,imagen) VALUES ('Frigopie','img/frigopie.png');
 
 
 CREATE TABLE usuarios(
-    nick VARCHAR(15) PRIMARY KEY,
-    pass VARCHAR(100),
+    idUsuario INT AUTO_INCREMENT,
+    nick VARCHAR(15) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    pass VARCHAR(100) NOT NULL,
     avatar VARCHAR(30),
-    rol INT
+    rol INT,
+    PRIMARY KEY(idUsuario,email)
 );
 
-INSERT INTO usuarios VALUES ('Direk','$2y$10$FY5V02emjCC1rfvCwPZFuuD4JDrAJ3yg85oPVRN.xCdyk7IvsL05S','img/avatares/boss.png',4);
+INSERT INTO usuarios VALUES ('Direk','direk@email.com','$2y$10$FY5V02emjCC1rfvCwPZFuuD4JDrAJ3yg85oPVRN.xCdyk7IvsL05S','img/avatares/boss.png',4);

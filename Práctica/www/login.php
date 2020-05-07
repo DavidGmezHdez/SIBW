@@ -11,14 +11,14 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $con = new SIBWBD();
 
-        $nick = $_POST['nick'];
+        $email = $_POST['email'];
         $pass = $_POST['pass'];
         
 
-        if($con->checkLogin($nick,$pass)){
+        if($con->checkLogin($email,$pass)){
             session_start();
             
-            $_SESSION['usuario'] = $nick;
+            $_SESSION['usuario'] = $email;
             $_SESSION['logueado'] = true;
             header("refresh:2;url=index.php");
             echo "Usuario logueado" ;
