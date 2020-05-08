@@ -44,20 +44,20 @@ function Enviar(){
 function requisitos(){
 
     //Comprobamos que el nombre no está vacio
-    if(document.forms["formulario"]["name"].value == null || document.forms["formulario"]["name"].value == ""){
-        alert("El nombre es un campo obligatorio");
+    if(document.forms["formulario-registro"]["nick"].value == null || document.forms["formulario-registro"]["nick"].value == ""){
+        alert("El nick es un campo obligatorio");
         return false;
+    }
+
+    //Comprobamos que el nombre no está vacio
+    if(document.forms["formulario-registro"]["pass"].value == null || document.forms["formulario-registro"]["pass"].value == ""){
+            alert("La contraseña es un campo obligatorio");
+            return false;
     }
 
     //Comprobamos que el email no está vacío
-    if(document.forms["formulario"]["email"].value == null || document.forms["formulario"]["email"].value == ""){
+    if(document.forms["formulario-registro"]["email"].value == null || document.forms["formulario-registro"]["email"].value == ""){
         alert("El email es un campo obligatorio");
-        return false;
-    }
-
-    //Comprobamos que el comentario no está vacío
-    if(document.forms["formulario"]["coment"].value == null || document.forms["formulario"]["coment"].value == ""){
-        alert("El comentario es un campo obligatorio");
         return false;
     }
 }

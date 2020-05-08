@@ -76,35 +76,36 @@ CREATE TABLE comentarios(
     usuario VARCHAR(100),
     fecha DATE,
     comentario TEXT,
+    moderado INT,
     PRIMARY KEY(idEvento,idComentario)
 );
 
-INSERT INTO comentarios VALUES ('1','1','Julio Jimenez','2018-07-05','¡Estaré allí!');
-INSERT INTO comentarios VALUES ('1','2','Sara Huertas','2018-07-03','Espero que le firmes un autógrafo a mi hija');
+INSERT INTO comentarios VALUES ('1','1','Julio Jimenez','2018-07-05','¡Estaré allí!',0);
+INSERT INTO comentarios VALUES ('1','2','Sara Huertas','2018-07-03','Espero que le firmes un autógrafo a mi hija',0);
 
-INSERT INTO comentarios VALUES ('2','1','Alberto Lopez','2020-03-28','Aun tengo helado en el oido');
-INSERT INTO comentarios VALUES ('2','2','Rocio Reloj','2020-03-29','Mi diabetes ha evolucionado');
+INSERT INTO comentarios VALUES ('2','1','Alberto Lopez','2020-03-28','Aun tengo helado en el oido',0);
+INSERT INTO comentarios VALUES ('2','2','Rocio Reloj','2020-03-29','Mi diabetes ha evolucionado',0);
 
-INSERT INTO comentarios VALUES ('3','1','Clara Palomas','2019-11-30','Me encantó el truco en el que hizo desaparecer mi cartera');
-INSERT INTO comentarios VALUES ('3','2','Clara Palomas','2019-11-30','Enserio devolvedmela por favor');
+INSERT INTO comentarios VALUES ('3','1','Clara Palomas','2019-11-30','Me encantó el truco en el que hizo desaparecer mi cartera',0);
+INSERT INTO comentarios VALUES ('3','2','Clara Palomas','2019-11-30','Enserio devolvedmela por favor',0);
 
-INSERT INTO comentarios VALUES ('4','1','Laura Velasco','2019-11-10','Me lo he pasado muy bien');
-INSERT INTO comentarios VALUES ('4','2','Kike Jimenez','2019-11-11','Aun sigo en el hospital por culpa de la medusa');
+INSERT INTO comentarios VALUES ('4','1','Laura Velasco','2019-11-10','Me lo he pasado muy bien',0);
+INSERT INTO comentarios VALUES ('4','2','Kike Jimenez','2019-11-11','Aun sigo en el hospital por culpa de la medusa',0);
 
-INSERT INTO comentarios VALUES ('5','1','Abraham Strawlopsky','2016-05-21','I loved it');
-INSERT INTO comentarios VALUES ('5','2','Oscar Campos','2016-05-23','Pues a mi no me ha gustado');
+INSERT INTO comentarios VALUES ('5','1','Abraham Strawlopsky','2016-05-21','I loved it',0);
+INSERT INTO comentarios VALUES ('5','2','Oscar Campos','2016-05-23','Pues a mi no me ha gustado',0);
 
-INSERT INTO comentarios VALUES ('6','1','Úrsula Fernández','2018-10-28','Espero verlo con muchas ansias en la TV');
-INSERT INTO comentarios VALUES ('6','2','Úrsula Fernández','2018-11-15','En verdad es una mierda');
+INSERT INTO comentarios VALUES ('6','1','Úrsula Fernández','2018-10-28','Espero verlo con muchas ansias en la TV',0);
+INSERT INTO comentarios VALUES ('6','2','Úrsula Fernández','2018-11-15','En verdad es una mierda',0);
 
-INSERT INTO comentarios VALUES ('7','1','Andrea Mandarinos','2020-04-01','HYPEEEE');
-INSERT INTO comentarios VALUES ('7','2','Paloma Palomares','2020-04-02','Tengo muchas ganas de verla');
+INSERT INTO comentarios VALUES ('7','1','Andrea Mandarinos','2020-04-01','HYPEEEE',0);
+INSERT INTO comentarios VALUES ('7','2','Paloma Palomares','2020-04-02','Tengo muchas ganas de verla',0);
 
-INSERT INTO comentarios VALUES ('8','1','Julian Jamones','2017-12-25','Oye un respeto con mi madre');
-INSERT INTO comentarios VALUES ('8','2','Berta Salvador','2017-12-26','JULIAN TU NO TE METAS');
+INSERT INTO comentarios VALUES ('8','1','Julian Jamones','2017-12-25','Oye un respeto con mi madre',0);
+INSERT INTO comentarios VALUES ('8','2','Berta Salvador','2017-12-26','JULIAN TU NO TE METAS',0);
 
-INSERT INTO comentarios VALUES ('9','1','Francisco Frenadol','2019-05-28','Era su capitan y puedo decir que era un buen soldado');
-INSERT INTO comentarios VALUES ('9','2','Jordi Cruz','2019-05-30','El bastardo me robó mis cuchillos');
+INSERT INTO comentarios VALUES ('9','1','Francisco Frenadol','2019-05-28','Era su capitan y puedo decir que era un buen soldado',0);
+INSERT INTO comentarios VALUES ('9','2','Jordi Cruz','2019-05-30','El bastardo me robó mis cuchillos',0);
 
 
 CREATE TABLE palabrascensuradas(

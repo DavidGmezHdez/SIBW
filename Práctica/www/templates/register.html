@@ -19,18 +19,18 @@
 {% block principal %}
 
         <section>
-            <form action="register.php" method="post" class="form" enctype="multipart/form-data">
+            <form action="register.php" method="post" class="form" enctype="multipart/form-data" id = "formulario-registro" name="formulario-registro">
 
                 <div class="form__field">
-                  <input type="text" name="nick" placeholder="Usuario">
+                  <input type="text" name="nick" id="nick" placeholder="Usuario">
                 </div>
         
                 <div class="form__field">
-                  <input type="password" name="pass" placeholder="Contraseña">
+                  <input type="password" name="pass" id="pass" placeholder="Contraseña">
                 </div>
 
                 <div class="form__field">
-                  <input type="text" name="email" placeholder="Email">
+                  <input type="text" name="email" id="email" placeholder="Email">
                 </div>
 
                 <div class="form__field">
@@ -39,7 +39,7 @@
                   </div>
         
                 <div class="form__field">
-                  <input type="submit" value="Registrarse">
+                  <input type="submit" value="Registrarse" onclick="requisitos()">
                 </div>
         
               </form>

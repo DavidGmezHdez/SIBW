@@ -1,8 +1,11 @@
 <?php
     include("bd.php");
 
+    $con = new SIBWBD();
+    session_start();
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $con = new SIBWBD();
+        
 
         $idEvento = (int)$_POST['idevento'];
         $name = $_POST['name'];

@@ -16,7 +16,9 @@
                 <p>Imprimir</p>
                 <img src="img/imprimir.png">
             </a>
-            <button id="button" onclick="Comenta()"><span>Comenta</span></button>
+            {% if logueado == true %}
+                <button id="button" onclick="Comenta()"><span>Comenta</span></button>
+            {% endif %}
         </aside>
     {% endblock %}
 
@@ -36,11 +38,20 @@
 
             <div id="caja-comentarios">
                 <div id = "caja">
-                    {% for comentario in evento['comentarios'] %}
+                    {% for comentario in comentarios %}
                         <div class="comentario">
-                            <p><em>{{comentario[0]}}</em></p>
-                            <p>{{comentario[1]}}</p>
-                            <p>{{comentario[2]}}</p>
+                            <p><em>{{ comentario['usuario'] }}</em></p>
+                            <p>{{ comentario['fecha'] }}</p>
+                            <p>{{ comentario['comentario'] }}</p>
+                            {% if comentario['moderado'] == 1 %}
+                                <p><em>Mensaje editado por un moderador</em></p>
+                            {% endif %}
+
+                            {% if usuario['rol'] >= 1 %}
+                                <a href="modify.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}"><img src="img/icono-lapiz.png"></a>
+                                <a href="evento.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}&borrar=true"> <img src="img/icono-basura.png"></a>
+                               
+                            {% endif %}
                         </div>
                     {% endfor %} 
                 </div>
@@ -48,15 +59,11 @@
 
 
             <div id="formulario-comentarios">
-                <form id = "formulario" name="formulario" method="POST" action="comentario.php">
+                <form id = "formulario" name="formulario" method="POST" action="evento.php">
                     <input name="idevento" type="hidden" value="{{ evento['idEvento'] }}"></input>
-                    <label>Nombre:</label>
-                    <input type="text" name="name" size="40">
-                    <label>Email</label>
-                    <input type="email" name="email" size="40">
                     <label>Comnetario</label>
-                    <textarea id="coment" name="coment" oninput="checkPalabras()" rows="10" cols="60"></textarea>
-                    <input type="submit" value = "Enviar Comentario" onclick="requisitos()">
+                    <textarea class="textarea" name="coment" oninput="checkPalabras()" rows="10" cols="60"></textarea>
+                    <input type="submit" value = "Enviar Comentario">
                     
                 </form>
 

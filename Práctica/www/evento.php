@@ -13,10 +13,27 @@
 
     session_start();
     $logueado = false;
+    $con = new SIBWBD();
 
 
     if(isset($_SESSION['logueado'])){
         $logueado = true;
+    }
+
+    if(isset($_SESSION['usuario'])) {
+        $usuario = $con->loadUsuario($_SESSION['usuario']);
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        
+        $idEvento = (int)$_POST['idevento'];
+        $name = $usuario['nick'];
+        $email = $_SESSION['usuario'];
+        $coment = $_POST['coment'];
+
+        $con->loadComentario($idEvento,$name,$email,$coment);   
+        header("Location: http://localhost/evento.php?ev=$idEvento");
+
     }
 
     if(isset($_GET['ev'])){
@@ -25,12 +42,20 @@
         $idEvento = -1;
     }
 
-    $con = new SIBWBD();
+    if($idEvento!=-1 && $logueado && $usuario['rol'] >= 1){
+        if(isset($_GET['coment']) && isset($_GET['borrar']) && $_GET['borrar'] == true){
+            $idComentario = $_GET['coment'];
+            $con->borrarComentario($idComentario, $idEvento);
+            header("Location: http://localhost/evento.php?ev=$idEvento");
+        }
+    }
 
-    $evento = $con->loadEvento($idEvento);
+
+    $evento = $con->getEvento($idEvento);
     $censuradas = $con->loadCensuradas();
     $galeria = $con->loadGaleria();
+    $comentarios = $con->getComentarios($idEvento);
 
-    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria, 'logueado'=>$logueado]);
+    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria, 'logueado'=>$logueado, 'usuario'=>$usuario, 'comentarios'=>$comentarios]);
 
 ?>

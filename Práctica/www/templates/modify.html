@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Modificar</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+        <section class="secciones">
+            <div class="informacion-modificar">
+                <h3>Panel para modificar el comentario</h3>
+                <h4><strong>Autor</strong></h4>
+                <p>{{ comentario['usuario'] }}</p>
+
+                <h4><strong>Texto</strong></h4>
+                <p>{{ comentario['comentario'] }}</p>
+            </div>
+
+
+            <form action="modify.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}" method="post" class="form">
+
+                <div class="form__field">
+                  <p>Modifique el comentario</p>
+                  <textarea class="textarea" type="text" name="nuevoComentario" placeholder="Modifica el comentario" required rows="10" cols="60"></textarea>
+                </div>
+        
+                <div class="form__field">
+                  <input type="submit" value="Modificar">
+                </div>
+        
+              </form>
+        </section>
+    {% endblock %}

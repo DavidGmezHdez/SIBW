@@ -31,17 +31,19 @@
             echo "Email cambiado";
         }
 
-        if(!empty($_POST['nuevaPass']) && is_string($_POST['nuevaPass']) && !empty($_POST['nuevaPassConfirmación']) && is_string($_POST['nuevaPassConfirmación']) && $_POST['nuevaPass'] == $_POST['nuevaPassConfirmación'] ){
-            $nuevaPass = $_POST['nuevaPass'];
+        if(!empty($_POST['nuevaPass'])  && !empty($_POST['nuevaPassConfirmación'])){
+            if( is_string($_POST['nuevaPass']) && is_string($_POST['nuevaPassConfirmación']) && $_POST['nuevaPass'] == $_POST['nuevaPassConfirmación'] ){
+                $nuevaPass = $_POST['nuevaPass'];
 
-            $con->cambiarPass($_SESSION['usuario'],$nuevoEmail);
-            session_destroy();
-            header("refresh:3;url=login.php");
-            echo "Contraseña cambiada | Inicia sesión con la nueva contraseña";
-        }
-        else{
-            header("refresh:3;url=profile.php");
-            echo "Error al introducir las contraseñas";
+                $con->cambiarPass($_SESSION['usuario'],$nuevaPass);
+                session_destroy();
+                header("refresh:3;url=login.php");
+                echo "Contraseña cambiada | Inicia sesión con la nueva contraseña";
+            }
+            else{
+                header("refresh:3;url=profile.php");
+                echo "Error las contraseñas no coinciden";
+            }
         }
     }
 
