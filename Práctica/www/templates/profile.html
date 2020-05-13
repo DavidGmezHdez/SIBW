@@ -28,7 +28,9 @@
 
             <div class="formualrio-perfil">
                 <form action="profile.php" method="post" class="form">
-
+                    {% for e in errors %}
+                        <p>{{ e }}</p>
+                    {% endfor %} 
                     <div class="form__field">
                         <p>Cambiar nombre usuario</p>
                         <input type="text" name="nuevoNick" placeholder="Usuario">
@@ -38,7 +40,6 @@
                         <p>Cambiar email</p>
                         <input type="text" name="nuevoEmail" placeholder="Email">
                     </div>
-
 
                     <div class="form__field">
                         <p>Cambiar contraseña</p>

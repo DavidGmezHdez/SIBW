@@ -12,41 +12,8 @@
 
     $con = new SIBWBD();
 
-
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        if(!empty($_POST['nuevoNick']) && is_string($_POST['nuevoNick'])){
-            $nuevoNick = $_POST['nuevoNick'];
-
-            $con->cambiarNick($_SESSION['usuario'],$nuevoNick);
-            header("refresh:2;url=profile.php");
-            echo "Nick cambiado";
-        }
-
-        if(!empty($_POST['nuevoEmail']) && is_string($_POST['nuevoEmail'])){
-            $nuevoEmail = $_POST['nuevoEmail'];
-
-            $con->cambiarEmail($_SESSION['usuario'],$nuevoEmail);
-            $_SESSION['usuario'] = $nuevoEmail;
-            header("refresh:2;url=profile.php");
-            echo "Email cambiado";
-        }
-
-        if(!empty($_POST['nuevaPass'])  && !empty($_POST['nuevaPassConfirmación'])){
-            if( is_string($_POST['nuevaPass']) && is_string($_POST['nuevaPassConfirmación']) && $_POST['nuevaPass'] == $_POST['nuevaPassConfirmación'] ){
-                $nuevaPass = $_POST['nuevaPass'];
-
-                $con->cambiarPass($_SESSION['usuario'],$nuevaPass);
-                session_destroy();
-                header("refresh:3;url=login.php");
-                echo "Contraseña cambiada | Inicia sesión con la nueva contraseña";
-            }
-            else{
-                header("refresh:3;url=profile.php");
-                echo "Error las contraseñas no coinciden";
-            }
-        }
-    }
-
+    $errors = [];
+    
     if(isset($_SESSION['usuario'])){
         $usuario = $con->loadUsuario($_SESSION['usuario']);
     }
@@ -54,7 +21,36 @@
     if(isset($_SESSION['logueado'])){
         $logueado = true;
     }
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if(!empty($_POST['nuevoNick']) && is_string($_POST['nuevoNick']) && isset($_POST['nuevoNick'])){
+            $nuevoNick = $_POST['nuevoNick'];
+        }
+
+        if(!empty($_POST['nuevoEmail']) && is_string($_POST['nuevoEmail']) && isset($_POST['nuevoEmail'])){
+            $nuevoEmail = $_POST['nuevoEmail'];
+        }
+
+        if(!empty($_POST['nuevaPass'])  && !empty($_POST['nuevaPassConfirmación']) && is_string($_POST['nuevaPass']) && is_string($_POST['nuevaPassConfirmación'])){
+            $nuevaPass = $_POST['nuevaPass'];
+            $nuevaPassConfirm = $_POST['nuevaPassConfirmación'];
+            if($nuevaPass != $nuevaPassConfirm){
+                $errors[] = "Las contraseñas no son iguales";
+            }
+        }
+
+        
+        if(empty($errors)){
+            $con->modificarInformacionUsuario($usuario['email'],$nuevoNick,$nuevaPass,$nuevoEmail);
+            header("Location:profile.php");
+        }
+        else{
+            echo $twig->render('profile.html',['usuario'=>$usuario,'logueado'=>$logueado,'errors'=>$errors]);
+        }
+    }
+
+
     
-    echo $twig->render('profile.html',['usuario'=>$usuario,'logueado'=>$logueado]);
+    echo $twig->render('profile.html',['usuario'=>$usuario,'logueado'=>$logueado,'errors'=>$errors]);
     
 ?>

@@ -127,7 +127,6 @@
 
             $con->modificarInformacionEvento($idEvento,$nuevoTitulo,$nuevoAutor,$nuevaFecha,$nuevaDescripcion,$portada,$imagen1,$imagen2);
             header("Location: http://localhost/evento.php?ev=" . $idEvento);
-            echo "Evento modificado";
         }
     }
 

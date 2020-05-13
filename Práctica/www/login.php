@@ -6,7 +6,7 @@
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
-
+    $errors = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $con = new SIBWBD();
@@ -15,19 +15,21 @@
         $pass = $_POST['pass'];
         
 
-        if($con->checkLogin($email,$pass)){
+        if(!$con->checkLogin($email,$pass)){
+            $errors[] = "Los datos no coinciden";
+        }
+
+        if(empty($errors)){
             session_start();
             
             $_SESSION['usuario'] = $email;
             $_SESSION['logueado'] = true;
-            header("refresh:2;url=index.php");
-            echo "Usuario logueado" ;
+            header("Location:index.php");
         }
         else{
-            header("Location: login.php");
+            echo $twig->render('login.html',['errors'=>$errors]);
         }
-        exit;
     }
 
-    echo $twig->render('login.html',[]);
+    echo $twig->render('login.html',['errors'=>$errors]);
 ?>

@@ -19,18 +19,26 @@
 {% block principal %}
 
         <section>
-            <form action="register.php" method="post" class="form" enctype="multipart/form-data" id = "formulario-registro" name="formulario-registro">
 
+
+            <form action="register.php" method="post" class="form" enctype="multipart/form-data" id = "formulario-registro" name="formulario-registro">
+              {% for e in errors %}
+                  <p>{{ e }}</p>
+              {% endfor %} 
                 <div class="form__field">
-                  <input type="text" name="nick" id="nick" placeholder="Usuario">
+                  <input type="text" name="nick" id="nick" placeholder="Usuario" required>
                 </div>
         
                 <div class="form__field">
-                  <input type="password" name="pass" id="pass" placeholder="Contraseña">
+                  <input type="password" name="pass" id="pass" placeholder="Contraseña" required>
                 </div>
 
                 <div class="form__field">
-                  <input type="text" name="email" id="email" placeholder="Email">
+                  <input type="password" name="pass2" id="pass" placeholder="Verifica la contraseña" required>
+                </div>
+
+                <div class="form__field">
+                  <input type="text" name="email" id="email" placeholder="Email" required>
                 </div>
 
                 <div class="form__field">
@@ -39,7 +47,7 @@
                   </div>
         
                 <div class="form__field">
-                  <input type="submit" value="Registrarse" onclick="requisitos()">
+                  <input type="submit" value="Registrarse">
                 </div>
         
               </form>

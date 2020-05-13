@@ -17,7 +17,7 @@ class SIBWBD{
 
 
     //Función para incorporar un evento a la BD (WIP)
-    function loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2){
+    function loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2,$etiquetas){
         $resultado = $this->$con->query("SELECT * FROM eventos WHERE titulo='" . $titulo . "'");
 
         if($resultado->num_rows > 0){
@@ -239,7 +239,6 @@ class SIBWBD{
     //Función que comprueba que el email y la contraseña que el introduce el usuario son correctos y corresponde a un usuario
     function checkLogin($email,$pass){
         $resultado = $this->$con->query("SELECT * FROM usuarios WHERE email='" . $email . "'");
-
         if($resultado->num_rows > 0){
             $row=$resultado->fetch_assoc();
         }
@@ -282,6 +281,27 @@ class SIBWBD{
         return $usuario;
     }
 
+    function modificarInformacionUsuario($email,$nick,$pass,$email2){
+        $resultado = $this->$con->query("SELECT  nick, pass, email FROM usuarios WHERE email ='". $email . "'");
+        if($resultado->num_rows > 0){
+            
+            if(isset($nick) && is_string($nick) && !empty($nick)){
+                $res = $this->$con->query("UPDATE usuarios SET nick='$nick' WHERE email='" . $email . "'");
+            }
+            
+            if(isset($pass) && is_string($pass) && !empty($pass)){
+                $nuevaPass = password_hash($pass,PASSWORD_DEFAULT);
+                $res = $this->$con->query("UPDATE usuarios SET pass='$nuevaPass' WHERE email='" . $email . "'");
+            }
+
+            if(isset($email2) && is_string($email2) && !empty($email2)){
+                $res = $this->$con->query("UPDATE usuarios SET email='$email2' WHERE email='" . $email . "'");
+            }
+
+
+        }
+    }
+
     //Función que cambia el nombre de un usuario de la BD
     function cambiarNick($email, $nuevoNick){
         $resultado = $this->$con->query("UPDATE usuarios SET nick='$nuevoNick' WHERE email='" . $email . "'");
@@ -313,6 +333,30 @@ class SIBWBD{
 
     function cambiarRol($idUsuario,$rol){
         $resultado = $this->$con->query("UPDATE usuarios SET rol='$rol' WHERE idUsuario='" . $idUsuario . "'");
+    }
+
+/*
+*   ETIQUETAS
+*/
+
+    function addEtiqueta($idEvento,$etiquetas){
+        foreach($etiquetas as $etiqueta) {
+            $this->$con->query("INSERT INTO etiquetas (idEvento,etiqueta) VALUES ('$idEvento','$etiqueta')");
+        }
+    }
+
+    function getEtiquetasPorEvento($idEvento){
+        $resultado = $this->$con->query("SELECT etiqueta FROM etiquetas WHERE idEvento= " . $idEvento);
+        $etiquetas = array();
+        
+        if($resultado->num_rows>0){
+            while($row = $resultado->fetch_assoc()){
+                $etiquetas[] = $row['etiqueta'];    
+            }
+        }
+
+        return $etiquetas;
+        
     }
 
 

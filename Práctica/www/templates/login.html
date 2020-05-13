@@ -19,7 +19,9 @@
 {% block principal %}
         <section>
             <form action="login.php" method="post" class="form">
-
+              {% for e in errors %}
+                  <p>{{ e }}</p>
+              {% endfor %} 
                 <div class="form__field">
                   <p>Introduzca su email</p>
                   <input type="text" name="email" placeholder="Email">

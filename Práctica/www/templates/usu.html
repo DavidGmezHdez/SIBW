@@ -23,6 +23,7 @@
                 <div id = "caja">
                     {% for usuario in usuarios %}
                         <div class="comentario-mod">
+                            <img src="{{ usuario['avatar'] }}"/>
                             <p><em>ID:</em> {{ usuario['idUsuario'] }}</p>
                             <p><em>nick:</em> {{ usuario['nick'] }}</p>
                             <p><em>Email:</em> {{ usuario['email'] }}</p>

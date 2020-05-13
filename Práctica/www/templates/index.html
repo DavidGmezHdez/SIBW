@@ -20,7 +20,7 @@
         <!--Código de la seccion de eventos-->
         <section class="ventana-eventos">
             {% for evento in eventos %}
-                <a href="evento.php?ev={{ evento['idEvento'] }}">
+                <a class="headers" href="evento.php?ev={{ evento['idEvento'] }}">
                     <div class="evento">
                         <img src="{{ evento['portada'] }}"/>
                         <p>{{ evento['titulo'] }}</p>

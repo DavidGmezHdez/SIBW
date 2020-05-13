@@ -147,3 +147,12 @@ CREATE TABLE usuarios(
 );
 
 INSERT INTO usuarios VALUES ('Direk','direk@email.com','$2y$10$FY5V02emjCC1rfvCwPZFuuD4JDrAJ3yg85oPVRN.xCdyk7IvsL05S','img/avatares/boss.png',4);
+
+
+
+CREATE TABLE etiquetas(
+    idEtiqueta INT AUTO_INCREMENT NOT NULL,
+    idEvento INT NOT NULL REFERENCES eventos(idEvento),
+    etiqueta VARCHAR(50),
+    PRIMARY KEY(idEtiqueta,idEvento)
+);

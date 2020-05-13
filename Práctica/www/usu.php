@@ -48,7 +48,7 @@
                         $con->cambiarRol($usu,3);
                     break;
                 }
-                header("refresh:3;url=usu.php");
+                header("Location:usu.php");
             }
         }    
     }

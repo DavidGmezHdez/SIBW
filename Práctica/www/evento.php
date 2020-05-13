@@ -55,7 +55,8 @@
     $censuradas = $con->loadCensuradas();
     $galeria = $con->loadGaleria();
     $comentarios = $con->getComentarios($idEvento);
+    $etiquetas = $con->getEtiquetasPorEvento($idEvento);
 
-    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria, 'logueado'=>$logueado, 'usuario'=>$usuario, 'comentarios'=>$comentarios]);
+    echo $twig->render('evento.html',['evento'=>$evento,'censuradas'=>$censuradas, 'galeria'=>$galeria, 'logueado'=>$logueado, 'usuario'=>$usuario, 'comentarios'=>$comentarios,'etiquetas'=>$etiquetas]);
 
 ?>
