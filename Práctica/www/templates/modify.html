@@ -18,27 +18,83 @@
 
 {% block principal %}
         <section class="secciones">
+
+          {% if tipoMod == 1 %}
             <div class="informacion-modificar">
-                <h3>Panel para modificar el comentario</h3>
-                <h4><strong>Autor</strong></h4>
-                <p>{{ comentario['usuario'] }}</p>
+              <h3>Panel para modificar el comentario</h3>
+              <h4><strong>Autor</strong></h4>
+              <p>{{ comentario['usuario'] }}</p>
 
-                <h4><strong>Texto</strong></h4>
-                <p>{{ comentario['comentario'] }}</p>
-            </div>
+              <h4><strong>Texto</strong></h4>
+              <p>{{ comentario['comentario'] }}</p>
+          </div>
 
 
-            <form action="modify.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}" method="post" class="form">
+          <form action="modify.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}&tipo=1" method="post" class="form">
+
+              <div class="form__field">
+                <p>Modifique el comentario</p>
+                <textarea class="textarea" type="text" name="nuevoComentario" placeholder="Modifica el comentario" required rows="10" cols="60"></textarea>
+              </div>
+      
+              <div class="form__field">
+                <input type="submit" value="Modificar">
+              </div>
+            </form>
+          {% endif %}
+
+          {% if tipoMod == 2 %}
+            <div class="informacion-modificar">
+              <h3>Panel para modificar el evento</h3>
+          </div>
+
+
+          <form action="modify.php?ev={{ evento['idEvento'] }}&tipo=2" method="post" class="form">
+
+                <p>Modifique el titulo</p>
+                <p>Titulo anterior: {{ evento['titulo'] }}</p>
+                <div class="form__field">
+                  <input type="text" name="titulo" id="titulo" placeholder="Titulo">
+                </div>
+
+                <p>Modifique el autor</p>
+                <p>Autor anterior: {{ evento['autor'] }}</p>
+                <div class="form__field">
+                  <input type="text" name="autor" id="autor" placeholder="Autor">
+                </div>
+
+                <p>Modifique la fecha</p>
+                <div class="form__field">
+                  <input type="date" name="fecha" id="fecha" placeholder="2020-01-01">
+                </div>
+
+                <p>Modifique la descripcion</p>
+                <div class="form__field">
+                    <textarea class="textarea" type="text" name="descripcion" placeholder="Modifique la descripcion del evento" rows="10" cols="60"></textarea>
+                </div>
 
                 <div class="form__field">
-                  <p>Modifique el comentario</p>
-                  <textarea class="textarea" type="text" name="nuevoComentario" placeholder="Modifica el comentario" required rows="10" cols="60"></textarea>
+                    <p>Inserte la nueva portada del evento</p>
+                    <input type="file" name="portada">
                 </div>
-        
+
                 <div class="form__field">
-                  <input type="submit" value="Modificar">
+                    <p>Inserte la nueva imagen 1 del evento</p>
+                    <input type="file" name="imagen1">
                 </div>
-        
-              </form>
+
+                <div class="form__field">
+                    <p>Inserte la nueva imagen 2 del evento</p>
+                    <input type="file" name="imagen2">
+                </div>
+      
+              <div class="form__field">
+                <input type="submit" value="Modificar">
+              </div>
+      
+            </form>
+          {% endif %}
+
+
         </section>
     {% endblock %}

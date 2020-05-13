@@ -36,19 +36,19 @@
                 <p>{{ evento['descripcion'] }} </p>
             </div>
 
-            <div id="caja-comentarios">
+            <div class="caja-comentarios">
                 <div id = "caja">
                     {% for comentario in comentarios %}
                         <div class="comentario">
                             <p><em>{{ comentario['usuario'] }}</em></p>
                             <p>{{ comentario['fecha'] }}</p>
                             <p>{{ comentario['comentario'] }}</p>
-                            {% if comentario['moderado'] == 1 %}
+                            {% if comentario['moderado'] > 0 %}
                                 <p><em>Mensaje editado por un moderador</em></p>
                             {% endif %}
 
                             {% if usuario['rol'] >= 1 %}
-                                <a href="modify.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}"><img src="img/icono-lapiz.png"></a>
+                                <a href="modify.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}&tipo=1"><img src="img/icono-lapiz.png"></a>
                                 <a href="evento.php?ev={{ evento['idEvento'] }}&coment={{ comentario['idComentario'] }}&borrar=true"> <img src="img/icono-basura.png"></a>
                                
                             {% endif %}

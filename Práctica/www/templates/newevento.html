@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Añadir nuevo evento</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+
+        <section>
+            <form action="newevento.php" method="post" class="form" enctype="multipart/form-data" id = "formulario-registro" name="formulario-registro">
+
+                <div class="form__field">
+                  <input type="text" name="titulo" id="titulo" placeholder="Titulo" required>
+                </div>
+        
+                <div class="form__field">
+                  <input type="text" name="autor" id="autor" placeholder="Autor" required>
+                </div>
+
+                <div class="form__field">
+                  <input type="date" name="fecha" id="fecha" placeholder="2020-01-01" required>
+                </div>
+
+                <div class="form__field">
+                    <textarea class="textarea" type="text" name="descripcion" placeholder="Añade la descripcion del evento" required rows="10" cols="60"></textarea>
+                </div>
+
+                <div class="form__field">
+                    <p>Inserte la portada del evento</p>
+                    <input type="file" name="portada">
+                </div>
+
+                <div class="form__field">
+                    <p>Inserte la imagen 1 del evento</p>
+                    <input type="file" name="imagen1">
+                </div>
+
+                <div class="form__field">
+                    <p>Inserte la imagen 2 del evento</p>
+                    <input type="file" name="imagen2">
+                </div>
+
+                <div class="form__field">
+                  <input type="submit" value="Añadir Evento">
+                </div>
+        
+              </form>
+        </section>
+    {% endblock %}

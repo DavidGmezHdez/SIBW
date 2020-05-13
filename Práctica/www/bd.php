@@ -17,33 +17,29 @@ class SIBWBD{
 
 
     //Función para incorporar un evento a la BD (WIP)
-    function loadEvento($idEvento){
-        if(is_int($idEvento)){
-    
-            $resultado = $this->$con->query("SELECT titulo, autor, fecha, descripcion, imagen1, imagen2 FROM eventos WHERE idEvento =". $idEvento);
-            $evento = array('id' => -1,'titulo'=>'Titulo Evento', 'autor' => 'Autor Evento', 'fecha' => date("Y-m-d"), 'descripcion' => 'Descricion Evento', 'image1' => 'Ruta imagen 1', 'imagen2' => 'Ruta imagen 2');
-            if($resultado->num_rows > 0){
-                $row = $resultado->fetch_assoc();
-                $titulo = $row['titulo'];
-                $autor = $row['autor'];
-                $fecha = $row['fecha'];
-                $descripcion = $row['descripcion'];
-                $imagen1 = $row['imagen1'];
-                $imagen2 = $row['imagen2'];
-            }
-    
-    
+    function loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2){
+        $resultado = $this->$con->query("SELECT * FROM eventos WHERE titulo='" . $titulo . "'");
 
-    
+        if($resultado->num_rows > 0){
+            return false;
         }
-    
-        $evento = array('idEvento'=>$idEvento, 'titulo'=>$titulo, 'autor'=>$autor, 'fecha'=>$fecha, 'descripcion'=>$descripcion, 'imagen1'=>$imagen1, 'imagen2'=>$imagen2,'comentarios'=>$comentarios);
-        return $evento;
+
+        if(is_string($titulo) && is_string($autor) && is_string($fecha) && is_string($descripcion) && is_string($portada)){
+            if(isset($imagen1) && is_string($imagen1) && isset($imagen2) && is_string($imagen2)){
+                $añadido = $this->$con->query("INSERT INTO eventos (idEvento,titulo,autor,fecha,descripcion,portada,imagen1,imagen2) VALUES ('$idNuevoEvento','$titulo','$autor','$fecha','$descripcion','$portada','$imagen1','$imagen2')");
+                return true;
+            }
+            else{
+                $añadido = $this->$con->query("INSERT INTO eventos (idEvento,titulo,autor,fecha,descripcion,portada,imagen1,imagen2) VALUES ('$idNuevoEvento','$titulo','$autor','$fecha','$descripcion','$portada','','')");
+                return true;
+            }
+        }
+        return false;
     }
 
     //Función para obtener un evento en base a un id
     function getEvento($idEvento){
-        $evento = array('idEvento' => -1,'titulo'=>'Titulo Evento', 'autor' => 'Autor Evento', 'fecha' => date("Y-m-d"), 'descripcion' => 'Descricion Evento', 'imagen1' => 'Ruta imagen 1', 'imagen2' => 'Ruta imagen 2');
+        //$evento = array('idEvento' => -1,'titulo'=>'Titulo Evento', 'autor' => 'Autor Evento', 'fecha' => date("Y-m-d"), 'descripcion' => 'Descricion Evento', 'imagen1' => 'Ruta imagen 1', 'imagen2' => 'Ruta imagen 2');
         if(is_int($idEvento)){
             $resultado = $this->$con->query("SELECT idEvento, titulo, autor, fecha, descripcion, imagen1, imagen2 FROM eventos WHERE idEvento =". $idEvento);
             if($resultado->num_rows > 0){
@@ -53,6 +49,68 @@ class SIBWBD{
         }
         return $evento;
     }
+
+    //Función para obtener todos los eventos
+    function getAllEventos(){
+        $resultado = $this->$con->query("SELECT * FROM eventos");
+        $eventos = array();
+
+        if($resultado->num_rows>0){
+            while($row = $resultado->fetch_assoc()){
+                $eventos[] = $row;
+            }
+        }
+
+        return $eventos;
+    }
+
+    //Función que borra un comentario de la BD
+    function borrarEvento($idEvento){
+        $resultado = $this->$con->query("DELETE FROM eventos WHERE idEvento='" . $idEvento . "'");
+        $carpeta = "img/eventos/evento".$idEvento;
+        //echo var_dump(is_dir($carpeta));
+        if(is_dir($carpeta)){
+            //echo var_dump($files);
+            array_map('unlink', glob("$carpeta/*.*"));
+            rmdir($carpeta);
+        }
+    }
+
+    //Funcion que modifica los datos del evento en función del modify
+    function modificarInformacionEvento($idEvento,$nuevoTitulo,$nuevoAutor,$nuevaFecha,$nuevaDescripcion,$portada,$imagen1,$imagen2){
+        $resultado = $this->$con->query("SELECT idEvento, titulo, autor, fecha, descripcion, imagen1, imagen2 FROM eventos WHERE idEvento =". $idEvento);
+        if($resultado->num_rows > 0){
+            if(isset($nuevoTitulo) && is_string($nuevoTitulo) && !empty($nuevoTitulo)){
+                $res = $this->$con->query("UPDATE eventos SET titulo='$nuevoTitulo' WHERE idEvento='" . $idEvento . "'" );
+            }
+
+            if(isset($nuevoAutor) && is_string($nuevoAutor) && !empty($nuevoAutor)){
+                $res = $this->$con->query("UPDATE eventos SET autor='$nuevoAutor' WHERE idEvento='" . $idEvento . "'" );
+            }
+
+            if(isset($nuevaFecha) && is_string($nuevaFecha) && !empty($nuevaFecha)){
+                $res = $this->$con->query("UPDATE eventos SET fecha='$nuevaFecha' WHERE idEvento='" . $idEvento . "'" );
+            }
+
+            if(isset($nuevaDescripcion) && is_string($nuevaDescripcion) && !empty($nuevaDescripcion)){
+                $res = $this->$con->query("UPDATE eventos SET descripcion='$nuevaDescripcion' WHERE idEvento='" . $idEvento . "'" );
+            }
+
+            if(isset($portada) && is_string($portada) && !empty($portada)){
+                $res = $this->$con->query("UPDATE eventos SET portada='$portada' WHERE idEvento='" . $idEvento . "'" );
+            }
+
+            if(isset($imagen1) && is_string($imagen1) && !empty($imagen1)){
+                $res = $this->$con->query("UPDATE eventos SET imagen1='$imagen1' WHERE idEvento='" . $idEvento . "'" );
+            }
+
+            if(isset($imagen2) && is_string($imagen2) && !empty($imagen2)){
+                $res = $this->$con->query("UPDATE eventos SET imagen2='$imagen2' WHERE idEvento='" . $idEvento . "'" );
+            }
+        }
+    }
+
+
     
 /*
 *   PALABRAS CENSURADAS
@@ -92,6 +150,8 @@ class SIBWBD{
         return $imagenes;
     }
 
+
+
 /*
 *   COMENTARIOS
 */
@@ -130,7 +190,7 @@ class SIBWBD{
 
     //FUnción para obtener todos los comentarios de un evento desde la BD
     function getComentarios($idEvento){
-        $resultado = $this->$con->query("SELECT idComentario,usuario,fecha,comentario FROM comentarios WHERE idEvento =". $idEvento);
+        $resultado = $this->$con->query("SELECT idComentario,usuario,fecha,comentario,moderado FROM comentarios WHERE idEvento =". $idEvento);
         
         if($resultado->num_rows > 0){
             $contador = 0;
@@ -142,10 +202,29 @@ class SIBWBD{
         return $comentarios;
     }
 
+    //Función para obtener todos los eventos
+    function getComentariosPorEventos(){
+        $resultado = $this->$con->query("SELECT idEvento, titulo FROM eventos");
+        
+        $comentarios = array();
+
+        if($resultado->num_rows > 0){
+            while($row = $resultado->fetch_assoc()){
+                $idEvento = $row['idEvento'];
+                $resultado2 = $this->$con->query("SELECT idComentario, usuario,fecha,comentario,moderado FROM comentarios WHERE idEvento =". $idEvento);
+                if($resultado2->num_rows > 0){
+                    while($fila = $resultado2->fetch_assoc())
+                        $comentarios[] = ['idEvento'=>$idEvento,'titulo'=>$row['titulo'], 'idComentario'=>$fila['idComentario'],'usuario'=>$fila['usuario'],'fecha'=>$fila['fecha'],'comentario'=>$fila['comentario'],'moderado'=>$fila['moderado']];
+                }
+            }
+        }
+
+        return $comentarios;
+    }
+
     //Función que modifica un comentario en la BD
     function modificarComentario($idComentario,$idEvento,$texto){
-        $resultado = $this->$con->query("UPDATE comentarios SET comentario='$texto', moderado = 1 WHERE idComentario='" . $idComentario . "' and idEvento='" . $idEvento . "'" );
-        
+        $resultado = $this->$con->query("UPDATE comentarios SET comentario='$texto', moderado = '1' WHERE idComentario='" . $idComentario . "' and idEvento='" . $idEvento . "'" );
     }
 
     //Función que borra un comentario de la BD
@@ -217,6 +296,23 @@ class SIBWBD{
     function cambiarPass($email, $pass){
         $nuevaPass = password_hash($pass,PASSWORD_DEFAULT);
         $resultado = $this->$con->query("UPDATE usuarios SET pass='$nuevaPass' WHERE email='" . $email . "'");
+    }
+
+    function getAllUsuarios(){
+        $resultado = $this->$con->query("SELECT * FROM usuarios");
+        $usuarios = array();
+
+        if($resultado->num_rows>0){
+            while($row = $resultado->fetch_assoc()){
+                $usuarios[] = $row;
+            }
+        }
+
+        return $usuarios;
+    }
+
+    function cambiarRol($idUsuario,$rol){
+        $resultado = $this->$con->query("UPDATE usuarios SET rol='$rol' WHERE idUsuario='" . $idUsuario . "'");
     }
 
 

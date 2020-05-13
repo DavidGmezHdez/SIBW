@@ -19,72 +19,13 @@
 {% block principal %}
         <!--Código de la seccion de eventos-->
         <section class="ventana-eventos">
-            <a href="evento.php?ev=1">
-                <div class="evento">
-                    
-                    <img src="img/tienda-helado.png"/>
-                    <p>Apertura tienda</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=2">
-                <div class="evento">
-                    
-                    <img src="img/firma-autografos.png"/>
-                    <p>Firma de autográfos</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=3">
-                <div class="evento">
-                    
-                    <img src="img/magia-helados.png"/>
-                    <p>Magia con helados</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=4">
-                <div class="evento">
-                    
-                    <img src="img/visita-playa.png"/>
-                    <p>Visita a la playa</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=5">
-                <div class="evento">
-                    
-                    <img src="img/representación-cuadros.png"/>
-                    <p>Exposición de cuadros</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=6">
-                <div class="evento">
-                    <img src="img/anuncio.png"/>
-                    <p>Rodaje del anuncio</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=7">
-                <div class="evento">
-                    <img src="img/rodaje-pelicula.png"/>
-                    <p>Rodaje pelicula</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=8">
-                <div class="evento">
-                    <img src="img/denuncia.png"/>
-                    <p>Crisis: Denuncia de una madre que afirma que tiene mucho azúcar</p>
-                </div>
-            </a>
-
-            <a href="evento.php?ev=9">
-                <div class="evento">
-                    <img src="img/cosas.png"/>
-                    <p>50 cosas sobre Cecilio. De ex-militar a cocinero profesional</p>
-                </div>
-            </a>
+            {% for evento in eventos %}
+                <a href="evento.php?ev={{ evento['idEvento'] }}">
+                    <div class="evento">
+                        <img src="{{ evento['portada'] }}"/>
+                        <p>{{ evento['titulo'] }}</p>
+                    </div>
+                </a>
+            {% endfor %} 
         </section>
-    {% endblock %}
+{% endblock %}

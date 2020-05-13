@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Modificar</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+        <section class="secciones">
+            <a href="newevento.php"><button id="button-gest"><span>Nuevo Evento</span></button></a>
+            <div class="caja-comentarios-mod">
+                    {% for evento in eventos %}
+                    <div class="comentario-mod">
+                            <p><em>{{ evento['titulo'] }}</em></p>
+                            {% if usuario['rol'] >= 1 %}
+                                <a href="modify.php?ev={{ evento['idEvento'] }}&tipo=2"><img src="img/icono-lapiz.png"></a>
+                                <a href="index.php?ev={{ evento['idEvento'] }}&borrar=true"> <img src="img/icono-basura.png"></a>
+                            {% endif %}
+                        </div>
+                    {% endfor %} 
+                </div>
+        </section>
+    {% endblock %}

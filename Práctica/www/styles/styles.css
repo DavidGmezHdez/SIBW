@@ -291,6 +291,7 @@
 
 #caja-comentarios{
     display: inline-block;
+    width: 30%;
 }
 
 .comentario{
@@ -299,12 +300,14 @@
     border-style: dotted;
     margin-top: 5%;
     margin-bottom: 5%;
+    width: 40%;
 }
 
 .comentario img{
-  width: 3%;
-  height: 3%;
+  width: 5%;
+  height: 5%;
 }
+
 
 .textarea{
   resize: none;
@@ -640,4 +643,141 @@
 
 .informacion-modificar h4{
   padding-left: 20%;
+}
+
+
+/*
+  COMENTARIOS MODERACION
+*/
+.formulario-comentarios{
+    margin-right: 100%;
+    display:inline-block;
+}
+
+
+.caja-comentarios-mod{
+    display: inline-block;
+    width: 50%;
+    padding-left: 15%;
+
+}
+
+.comentario-mod{
+    border-radius: 5%;
+    border-color: red;
+    border-style: dotted;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 20%;
+    
+}
+
+.comentario-mod img{
+  width: 3%;
+  height: 3%;
+}
+
+
+/*
+ GESTIONAR
+ */
+
+
+
+#button-gest{
+  display: block;
+  border-radius: 4px;
+  background-color: #b42424d7;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 100%;
+  padding: 5%;
+  width: 20%;
+  height: 5%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2%;
+  vertical-align:middle;
+  margin-right: 100%;
+  margin-top: 10%;
+  margin-left: 50%;
+  max-width: 40%;
+  max-height: 40%;
+}
+
+#button-gest span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#button-gest span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#button-gest:hover span {
+  padding-right: 25px;
+}
+
+#button-gest:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+/*
+* USUARIOS
+*/
+
+#button-usu{
+  display: inline;
+  border-radius: 4px;
+  background-color: #b42424d7;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 100%;
+  padding: 5%;
+  width: 20%;
+  height: 5%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2%;
+  vertical-align:middle;
+  padding-right: 10%;
+  margin-top: 10%;
+  max-width: 40%;
+  max-height: 40%;
+}
+
+#button-usu span {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#button-usu span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#button-usu:hover span {
+  padding-right: 25px;
+}
+
+#button-usu:hover span:after {
+  opacity: 1;
+  right: 0;
 }

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Modificar</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+        <section class="secciones">
+            <div class="caja-comentarios-mod">
+                <div id = "caja">
+                    {% for comentario in comentarios %}
+                        <div class="comentario-mod">
+                            <p><em>Este comentario pertenece al evento: {{ comentario['titulo'] }}</em></p>
+                            <p>{{ comentario['usuario'] }}</p>
+                            <p>{{ comentario['fecha'] }}</p>
+                            <p>{{ comentario['comentario'] }}</p>
+                            {% if comentario['moderado'] > 0 %}
+                                <p><em>Mensaje editado por un moderador</em></p>
+                            {% endif %}
+
+                            {% if usuario['rol'] >= 1 %}
+                                <a href="modify.php?ev={{ comentario['idEvento'] }}&coment={{ comentario['idComentario'] }}&tipo=1"><img src="img/icono-lapiz.png"></a>
+                                <a href="evento.php?ev={{ comentario['idEvento'] }}&coment={{ comentario['idComentario'] }}&borrar=true"> <img src="img/icono-basura.png"></a>
+                               
+                            {% endif %}
+                        </div>
+                    {% endfor %} 
+                </div>
+            </div>
+        </section>
+    {% endblock %}

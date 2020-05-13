@@ -32,15 +32,15 @@
 
                     {% if logueado == true %}
                         {% if usuario['rol'] >= 1 %}
-                        <li class = "natvar"><a href="coments.php"><h5>Comentarios</h5></a></li>
+                        <li class = "natvar"><a href="mod.php"><h5>Comentarios</h5></a></li>
                         {% endif %}
 
                         {% if usuario['rol'] >= 2 %}
-                        <li class = "natvar"><a href="gestor.php"><h5>Eventos</h5></a></li>
+                        <li class = "natvar"><a href="gest.php"><h5>Eventos</h5></a></li>
                         {% endif %}
 
                         {% if usuario['rol'] >= 3 %}
-                        <li class = "natvar"><a href="usuarios.php"><h5>Usuarios</h5></a></li>
+                        <li class = "natvar"><a href="usu.php"><h5>Usuarios</h5></a></li>
                         {% endif %}
                         
                     <li class = "natvar"><a href="profile.php"><h5>Perfil</h5></a></li>

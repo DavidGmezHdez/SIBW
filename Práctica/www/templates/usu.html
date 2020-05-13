@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+    {% block titulo %}
+    <title>Modificar</title>
+    {% endblock %}
+
+
+{% block aside %}
+<aside class="auxiliar">
+    <p>Instagram</p>
+    <img src="img/instagram.png"/>
+    <p>Facebook</p>
+    <img src="img/facebook.png"/>
+    <p>Twitter</p>
+    <img src="img/twitter.png"/>
+</aside>
+{% endblock %}
+
+
+{% block principal %}
+        {% if usuario['rol'] >= 3 %}
+        <section class="secciones">
+            <div class="caja-comentarios-mod">
+                <div id = "caja">
+                    {% for usuario in usuarios %}
+                        <div class="comentario-mod">
+                            <p><em>ID:</em> {{ usuario['idUsuario'] }}</p>
+                            <p><em>nick:</em> {{ usuario['nick'] }}</p>
+                            <p><em>Email:</em> {{ usuario['email'] }}</p>
+                            <p><em>Rol:</em>                            
+                            {% if usuario['rol'] == 0 %}
+                                Usuario normal
+                            {% endif %}
+
+                            {% if usuario['rol'] == 1 %}
+                                Moderador
+                            {% endif %}
+
+                            {% if usuario['rol'] == 2 %}
+                                Gestor
+                            {% endif %}
+
+                            {% if usuario['rol'] == 3 %}
+                                Superusuario
+                            {% endif %}        
+                            
+                            {% if usuario['rol'] == 4 %}
+                                Administrador del sistema
+                            {% endif %}</p>
+
+                            <form action="usu.php" method="post" class="form" enctype="multipart/form-data">
+                            {% if usuario['rol'] == 0 %}
+                                    <input type="hidden" name="id" value="{{ usuario['idUsuario'] }}">
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Moderador">Hacer Moderador</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Gestor">Hacer Gestor</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Superusuario">Hacer Superusuario</button> 
+                                    </div>
+                            {% endif %}
+
+                        
+                              
+                            {% if usuario['rol'] == 1 %}
+                                    <input type="hidden" name="id" value="{{ usuario['idUsuario'] }}">
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Normal">Hacer Usuario Normal</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Gestor">Hacer Gestor</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Superusuario">Hacer Superusuario</button> 
+                                    </div>
+                            {% endif %}
+
+
+                            {% if usuario['rol'] == 2 %}
+                                    <input type="hidden" name="id" value="{{ usuario['idUsuario'] }}">
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Normal">Hacer Usuario Normal</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Moderador">Hacer Moderador</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Superusuario">Hacer Superusuario</button> 
+                                    </div>
+                            {% endif %}
+
+                            {% if usuario['rol'] == 3 %}
+                                    <input type="hidden" name="id" value="{{ usuario['idUsuario'] }}">
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Normal">Hacer Usuario Normal</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Moderador">Hacer Moderador</button> 
+                                    </div>
+                                    <div class="form__field">
+                                        <button type="submit" name="rol" value="Gestor">Hacer Gestor</button> 
+                                    </div>
+                            {% endif %}
+                            </form>        
+                        </div>
+                    {% endfor %} 
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    {% endblock %}
