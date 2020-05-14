@@ -74,6 +74,7 @@ class SIBWBD{
             array_map('unlink', glob("$carpeta/*.*"));
             rmdir($carpeta);
         }
+        $this->$con->query("DELETE FROM etiquetas WHERE idEvento='" . $idEvento . "'");
     }
 
     //Funcion que modifica los datos del evento en función del modify
