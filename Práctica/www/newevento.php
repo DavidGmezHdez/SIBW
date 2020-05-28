@@ -22,12 +22,18 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $con = new SIBWBD();
 
-        if(isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['fecha']) && isset($_POST['descripcion']) && isset($_POST['etiquetas'])){
+        if(isset($_POST['titulo']) && isset($_POST['autor']) && isset($_POST['fecha']) && isset($_POST['descripcion']) && isset($_POST['etiquetas']) && isset($_POST['publicado'])){
             $titulo = $_POST['titulo'];
             $autor = $_POST['autor'];
             $fecha = preg_replace("([^0-9/])", "", $_POST['fecha']);
             $descripcion = $_POST['descripcion'];
             $etiquetas = explode(',', $_POST['etiquetas']);
+            if($_POST['publicado'] == "Si"){
+                $publicado = 1;
+            }
+            else if ($_POST['publicado'] == "No"){
+                $publicado = 0;
+            }
         }
 
         $eventos = $con->getAllEventos();
@@ -101,7 +107,7 @@
             $imagen2 = null;
         }
 
-        if($con->loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2,$etiquetas)){
+        if($con->loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2,$publicado)){
                 $con->addEtiqueta($idNuevoEvento,$etiquetas);
                 header("refresh:2;url=index.php");
                 echo "Evento creado" ;

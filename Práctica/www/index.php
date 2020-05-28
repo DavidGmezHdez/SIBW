@@ -18,7 +18,7 @@
         $usuario = $con->loadUsuario($_SESSION['usuario']);
     }
 
-    $eventos = $con->getAllEventos();
+    $eventos = $con->getAllEventosPublicados();
     $neventos = count($eventos);
 
     if($logueado && $usuario['rol'] >= 2){

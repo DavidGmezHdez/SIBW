@@ -17,20 +17,20 @@ class SIBWBD{
 
 
     //Función para incorporar un evento a la BD (WIP)
-    function loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2,$etiquetas){
+    function loadEvento($idNuevoEvento,$titulo,$autor,$fecha,$descripcion,$portada,$imagen1,$imagen2,$publicado){
         $resultado = $this->$con->query("SELECT * FROM eventos WHERE titulo='" . $titulo . "'");
 
         if($resultado->num_rows > 0){
             return false;
         }
-
-        if(is_string($titulo) && is_string($autor) && is_string($fecha) && is_string($descripcion) && is_string($portada)){
+        echo (var_dump($publicado));
+        if(is_string($titulo) && is_string($autor) && is_string($fecha) && is_string($descripcion) && is_string($portada) && is_int($publicado)){
             if(isset($imagen1) && is_string($imagen1) && isset($imagen2) && is_string($imagen2)){
-                $añadido = $this->$con->query("INSERT INTO eventos (idEvento,titulo,autor,fecha,descripcion,portada,imagen1,imagen2) VALUES ('$idNuevoEvento','$titulo','$autor','$fecha','$descripcion','$portada','$imagen1','$imagen2')");
+                $añadido = $this->$con->query("INSERT INTO eventos (idEvento,titulo,autor,fecha,descripcion,portada,imagen1,imagen2,publicado) VALUES ('$idNuevoEvento','$titulo','$autor','$fecha','$descripcion','$portada','$imagen1','$imagen2','$publicado')");
                 return true;
             }
             else{
-                $añadido = $this->$con->query("INSERT INTO eventos (idEvento,titulo,autor,fecha,descripcion,portada,imagen1,imagen2) VALUES ('$idNuevoEvento','$titulo','$autor','$fecha','$descripcion','$portada','','')");
+                $añadido = $this->$con->query("INSERT INTO eventos (idEvento,titulo,autor,fecha,descripcion,portada,imagen1,imagen2,publicado) VALUES ('$idNuevoEvento','$titulo','$autor','$fecha','$descripcion','$portada','','','$publicado')");
                 return true;
             }
         }
@@ -64,7 +64,22 @@ class SIBWBD{
         return $eventos;
     }
 
-    //Función que borra un comentario de la BD
+
+    //Función para obtener todos los eventos publicados
+    function getAllEventosPublicados(){
+        $resultado = $this->$con->query("SELECT * FROM eventos WHERE publicado='1'");
+        $eventos = array();
+
+        if($resultado->num_rows>0){
+            while($row = $resultado->fetch_assoc()){
+                $eventos[] = $row;
+            }
+        }
+
+        return $eventos;
+    }
+
+    //Función que borra un evento de la BD
     function borrarEvento($idEvento){
         $resultado = $this->$con->query("DELETE FROM eventos WHERE idEvento='" . $idEvento . "'");
         $carpeta = "img/eventos/evento".$idEvento;
@@ -78,7 +93,7 @@ class SIBWBD{
     }
 
     //Funcion que modifica los datos del evento en función del modify
-    function modificarInformacionEvento($idEvento,$nuevoTitulo,$nuevoAutor,$nuevaFecha,$nuevaDescripcion,$portada,$imagen1,$imagen2){
+    function modificarInformacionEvento($idEvento,$nuevoTitulo,$nuevoAutor,$nuevaFecha,$nuevaDescripcion,$portada,$imagen1,$imagen2,$publicado){
         $resultado = $this->$con->query("SELECT idEvento, titulo, autor, fecha, descripcion, imagen1, imagen2 FROM eventos WHERE idEvento =". $idEvento);
         if($resultado->num_rows > 0){
             if(isset($nuevoTitulo) && is_string($nuevoTitulo) && !empty($nuevoTitulo)){
@@ -108,7 +123,44 @@ class SIBWBD{
             if(isset($imagen2) && is_string($imagen2) && !empty($imagen2)){
                 $res = $this->$con->query("UPDATE eventos SET imagen2='$imagen2' WHERE idEvento='" . $idEvento . "'" );
             }
+
+            if(isset($publicado) && is_int($publicado)){                
+                $res = $this->$con->query("UPDATE eventos SET publicado='$publicado' WHERE idEvento='" . $idEvento . "'" );
+            }
         }
+    }
+
+    //Función que devuelve los eventos para el buscador
+    function buscarEvento($titulo){
+        $buscados = "";
+        if(!empty($titulo)){
+            
+            $resultado = $this->$con->query("SELECT idEvento, titulo FROM eventos WHERE titulo LIKE '%$titulo%' AND publicado='1'");
+            $buscados = array();
+
+            if($resultado->num_rows>0){
+                while($row = $resultado->fetch_assoc()){
+                    $buscados[] = $row;
+                }
+            }   
+        }
+        return $buscados;
+    }
+
+    function buscarEventoGestor($titulo){
+        $buscados = "";
+        if(!empty($titulo)){
+            
+            $resultado = $this->$con->query("SELECT idEvento, titulo FROM eventos WHERE titulo LIKE '%$titulo%'");
+            $buscados = array();
+
+            if($resultado->num_rows>0){
+                while($row = $resultado->fetch_assoc()){
+                    $buscados[] = $row;
+                }
+            }   
+        }
+        return $buscados;
     }
 
 
@@ -173,7 +225,6 @@ class SIBWBD{
     
             $date = date('Y-m-d');
             $res = $this->$con->query("INSERT INTO comentarios (idEvento,idComentario,usuario,fecha,comentario,moderado) VALUES('$idevento','$nuevoIdComentario','$name','$date','$coment',0)");
-            echo var_dump($res);
         }
     }
 

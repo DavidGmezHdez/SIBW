@@ -47,7 +47,7 @@
             <div class="informacion-modificar">
               <h3>Panel para modificar el evento</h3>
           </div>
-
+          
 
           <form action="modify.php?ev={{ evento['idEvento'] }}&tipo=2" method="post" class="form">
 
@@ -87,6 +87,16 @@
                     <p>Inserte la nueva imagen 2 del evento</p>
                     <input type="file" name="imagen2">
                 </div>
+              
+
+                <div class="form__field">
+                  <label>Cambia la visibilidad del evento</label>
+                  <select name="publicado">
+                    <option value="Si">Publicarlo</option>
+                    <option value="No">Dejarlo privado</option>
+                  </select>
+                </div>
+                
       
               <div class="form__field">
                 <input type="submit" value="Modificar">

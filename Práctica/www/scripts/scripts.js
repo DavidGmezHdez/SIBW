@@ -147,3 +147,36 @@ function showSlides(n) {
     dots[slideIndex-1].className += " active";
     captionText.innerHTML = dots[slideIndex-1].alt;
 }
+
+
+//Buscador
+
+function buscar(titulo){  
+    $.ajax({
+        data: {titulo},
+        url:'buscador.php',
+        type: 'get',
+        chache: 'false',
+        success: function(busqueda){
+            procesarBusqueda(busqueda);
+        }
+    });
+}
+
+function procesarBusqueda(busqueda){
+    var res="";
+    var busquedaDecoficada = $.parseJSON(busqueda);
+
+
+    if(busqueda.length > 0){
+        for(i = 0; i < busquedaDecoficada.length; ++i) {
+            res += "<a class='headers' href=\"/evento.php?ev=" + busquedaDecoficada[i]['idEvento'] + "\">" + busquedaDecoficada[i]['titulo'] + "</a><br>";
+        }
+        $("#resultados").html(res);
+        document.getElementById("resultados").style.border="1px solid #FF0000";
+    }
+    else{
+        document.getElementById("resultaods").innerHTML="";
+        document.getElementById("resultados").style.border="0px";
+    }
+}

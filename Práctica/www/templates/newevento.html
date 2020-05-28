@@ -38,24 +38,33 @@
                 </div>
 
                 <div class="form__field">
-                    <p>Inserte la portada del evento</p>
+                    <label>Inserte la portada del evento</label>
                     <input type="file" name="portada">
                 </div>
 
                 <div class="form__field">
-                    <p>Inserte la imagen 1 del evento</p>
+                    <label>Inserte la imagen 1 del evento</label>
                     <input type="file" name="imagen1">
                 </div>
 
                 <div class="form__field">
-                    <p>Inserte la imagen 2 del evento</p>
+                    <label>Inserte la imagen 2 del evento</label>
                     <input type="file" name="imagen2">
                 </div>
 
                 <div class="form__field">
                   <p>Añade las etiquetas del evento (separadas por comas)</p>
                   <textarea class="textarea" type="text" name="etiquetas" placeholder="etiqueta1,etiqueta2..." required rows="10" cols="60"> </textarea>
-              </div>
+                </div>
+
+                <div class="form__field">
+                  <label>¿Quieres publicar el evento?</label>
+                  <select name="publicado">
+                    <option value="Si">Sí</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
 
                 <div class="form__field">
                   <input type="submit" value="Añadir Evento">

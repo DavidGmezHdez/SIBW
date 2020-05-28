@@ -63,6 +63,19 @@
                 $nuevaDescripcion =  $_POST['descripcion'];
             }
 
+            if(isset($_POST['publicado']) && is_string($_POST['publicado']) && !empty($_POST['publicado'])){
+                if($_POST['publicado'] == "Si"){
+                    $publicado = 1;
+                }
+                else if ($_POST['publicado'] == "No"){
+                    $publicado = 0;
+                }
+            }
+
+            //echo (var_dump($publicado));
+
+            
+
 
             if(isset($_FILES['portada'])){
                 $errors = array();
@@ -125,8 +138,15 @@
                 $imagen2 = null;
             }
 
-            $con->modificarInformacionEvento($idEvento,$nuevoTitulo,$nuevoAutor,$nuevaFecha,$nuevaDescripcion,$portada,$imagen1,$imagen2);
-            header("Location: http://localhost/evento.php?ev=" . $idEvento);
+            
+            $con->modificarInformacionEvento($idEvento,$nuevoTitulo,$nuevoAutor,$nuevaFecha,$nuevaDescripcion,$portada,$imagen1,$imagen2,$publicado);
+            if($publicado == 1){
+                header("Location: http://localhost/evento.php?ev=" . $idEvento);
+            }
+            else if($publicado == 0){
+                header("Location: http://localhost/index.php");
+            }
+            
         }
     }
 

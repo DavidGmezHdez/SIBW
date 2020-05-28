@@ -68,7 +68,7 @@
                 <form id = "formulario" name="formulario" method="POST" action="evento.php">
                     <input name="idevento" type="hidden" value="{{ evento['idEvento'] }}"></input>
                     <label>Comnetario</label>
-                    <textarea class="textarea" name="coment" oninput="checkPalabras()" rows="10" cols="60"></textarea>
+                    <textarea class="textarea" name="coment" oninput="checkPalabras()" rows="10" cols="60" required></textarea>
                     <input type="submit" value = "Enviar Comentario">
                     
                 </form>
